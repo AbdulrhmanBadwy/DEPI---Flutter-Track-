@@ -1,0 +1,230 @@
+{
+  "main": {
+    "id": "049b5eda758e4602",
+    "type": "split",
+    "children": [
+      {
+        "id": "9b4e917cb3e4a1d6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aa35917b5cb8cd43",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Flutter_Explain/Pasted image 20260131120419.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20260131120419"
+            }
+          },
+          {
+            "id": "a86f2860b0b9d4b6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Flutter_Explain/Flutter.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Flutter"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dce34f2b0d635ddb",
+    "type": "split",
+    "children": [
+      {
+        "id": "7da9ccdca7d94070",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e3087efe46890d03",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "68b5668cab892213",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5ebb4484716d05f7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "18f345bcf969c7c0",
+    "type": "split",
+    "children": [
+      {
+        "id": "32ac53a01e52b091",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bbcdbdf7a24dd2bb",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Flutter_Explain/Flutter.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Flutter"
+            }
+          },
+          {
+            "id": "11e4e773ce678325",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Dart_Explain/Dart Explain.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Dart Explain"
+            }
+          },
+          {
+            "id": "450bbd8abd329619",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "9e5e93e7ac32c83f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "34fabc764c1e26d4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Dart_Explain/Dart Explain.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Dart Explain"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false
+    }
+  },
+  "active": "a86f2860b0b9d4b6",
+  "lastOpenFiles": [
+    "Pasted image 20260206171023.png",
+    "Pasted image 20260206170927.png",
+    "Pasted image 20260206163231.png",
+    "Flutter_Explain/Pasted image 20260202212734.png",
+    "Flutter_Explain/Pasted image 20260203103956.png",
+    "Flutter_Explain/Pasted Image 20260203103119_494.png",
+    "Flutter_Explain/Pasted image 20260203100049.png",
+    "Flutter_Explain/Pasted image 20260203094041.png",
+    "Flutter_Explain/Pasted Image 20260202194323_274.png",
+    "Flutter_Explain/Pasted image 20260203064857.png",
+    "Flutter_Explain/Pasted image 20260203071433.png",
+    "Flutter_Explain/Flutter.md",
+    "Excalidraw/Drawing 2026-02-02 19.43.20.excalidraw.md",
+    "Excalidraw/Drawing 2026-02-03 10.25.26.excalidraw.md",
+    "Excalidraw/Drawing 2026-02-01 16.18.32.excalidraw.md",
+    "Tasks/Flutter Tasks.md",
+    "Excalidraw/Drawing 2026-02-01 20.08.45.excalidraw.md",
+    "Excalidraw/Drawing 2026-02-01 12.51.30.excalidraw.md",
+    "Excalidraw",
+    "Tasks",
+    "Untitled 1.base",
+    "Dart_Explain/Dart Explain.md",
+    "Untitled.base",
+    "Welcome.md",
+    "Flutter_Explain",
+    "Dart_Explain"
+  ]
+}

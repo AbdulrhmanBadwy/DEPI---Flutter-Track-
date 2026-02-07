@@ -1,0 +1,746 @@
+.theme-dark,
+.theme-light{
+
+  /* Obsidian "Dark" import so light mode looks the same*/
+  --color-scheme: dark;
+  --highlight-mix-blend-mode: lighten;
+}
+
+/* ====================================================================== Theme Variables ====================================================================== */
+:root {
+
+  /* Background */
+  --background-primary: #181d27;
+  --default-text: #f0f4ff;
+
+  /* Header Colors */
+  --h1-color: #ff4140;
+  --h2-color: #00e5ff;
+  --h3-color: #00ff9d;
+  --h4-color: #9cfac7;
+  --h5-color: #f1fa8c;
+  --h6-color: #ffb86c;
+
+
+  --bold-color: #ff3d71;
+  --italic-color: #ffb86c;
+  --list-color: #e6edf3;
+  --code-color: #50fa7b;
+}
+
+
+/* ====================================================================== Global Styles ====================================================================== */
+body {
+  background-color: var(--background-primary);
+  background-image: radial-gradient(#ffffff15 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--default-text);
+  font-family: 'Inter', sans-serif; /* Modern, readable font */
+  font-size: 1.1rem; /* Slightly larger base font size */
+  line-height: 1.8; /* Increased line height for better readability */
+  letter-spacing: 0.02em; /* Slight letter spacing for clarity */
+  -webkit-font-smoothing: antialiased; /* Smooth font rendering */
+  -moz-osx-font-smoothing: grayscale; /* Smooth font rendering */
+}
+
+/* Paragraphs */
+p {
+  margin: 1.5em 0; /* Add spacing between paragraphs */
+}
+
+/* Links */
+a {
+  color: var(--h2-color); /* Use a header color for links */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--h3-color); /* Change color on hover */
+}
+
+/* ====================================================================== Headers Styling ====================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 730 !important;
+  margin: 1.5em 0 1em 0;
+  line-height: 1.4;
+  position: relative;
+}
+
+h1 {
+  color: var(--h1-color);
+  font-size: 2.2em;
+  margin: 0;
+  display: inline-block;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3.2px;
+  background: linear-gradient(90deg, transparent 0%, var(--h1-color) 45%, var(--h1-color) 60%, transparent 100%);
+  border-radius: 4px;
+  margin-top: 0.2em;
+}
+
+h2 { color: var(--h2-color) !important; font-size: 2.0em; }
+h3 { color: var(--h3-color) !important; font-size: 1.8em; }
+h4 { color: var(--h4-color) !important; font-size: 1.6em; }
+h5 { color: var(--h5-color) !important; font-size: 1.4em; }
+h6 { color: var(--h6-color) !important; font-size: 1.2em; }
+
+/* Subtle Visual Indicators for Headers */
+h2::before, h3::before, h4::before, h5::before, h6::before {
+  position: absolute;
+  left: -1em;
+  top: 50%;
+  width: 0.5em;
+  height: 2px;
+  background-color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ====================================================================== Bold Text Styling ====================================================================== */
+strong, b,
+*[style*="font-weight: bold"],
+*[style*="font-weight:bold"],
+*[style*="font-weight: 700"] {
+  color: var(--bold-color) !important;
+  font-weight: 700 !important;
+}
+
+/* ====================================================================== Page Break Styling ====================================================================== */
+.page-break {
+  page-break-before: always;
+  page-break-after: avoid;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ====================================================================== List Styling ====================================================================== */
+/* Bullet Lists */
+.markdown-preview-view ul > li::marker {
+  content: "⟢ ";
+  color: var(--list-color) !important;
+}
+
+/* Numbered Lists */
+.markdown-preview-view ol > li::marker {
+  color: var(--list-color) !important;
+  font-weight: bold;
+}
+
+/* ====================================================================== Table Styling ====================================================================== */
+.markdown-preview-view table {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 12px solid #0d1117;
+  background: #0d1117;
+  box-shadow: none;
+  margin: 1em 0;
+  table-layout: fixed;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Header Row Styling */
+.markdown-preview-view th {
+  color: #bbf7cf !important;
+  padding: 14px 18px !important;
+  background: rgb(40, 52, 50) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 4px solid #3da163 !important;
+  border-right: 1px solid #2f3033 !important;
+  text-align: center !important;
+}
+
+/* Regular Cell Styling */
+.markdown-preview-view td {
+  color: #e2e8f0 !important;
+  padding: 12px 18px !important;
+  background: rgb(28, 29, 33) !important;
+  border-bottom: 1px solid #2f3033 !important;
+  border-right: 1px solid #2f3033 !important;
+}
+
+/* Remove Last Column's Border-Right */
+.markdown-preview-view td:last-child,
+.markdown-preview-view th:last-child {
+  border-right: none !important;
+}
+
+
+
+/* ====================================================================== Parentheses Text Styling ====================================================================== */
+.parentheses-text {
+  color: #ff757f !important;
+}
+
+/* Protect Code Blocks */
+pre code .parentheses-text,
+.cm-inline-code .parentheses-text {
+  color: inherit !important;
+}
+
+/* ====================================================================== Horizontal Line Styling ====================================================================== */
+hr, .markdown-preview-view hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--h2-color), transparent);
+  margin: 2em 0;
+  border-radius: 2px;
+}
+
+/* ====================================================================== CODE BLOCKS STYLING ====================================================================== */
+
+/* ====================================================================== Inline Code ====================================================================== */
+:not(pre) > code,
+p > .cm-inline-code,
+li > .cm-inline-code,
+td > .cm-inline-code {
+  font-family: 'Roboto', sans-serif !important;
+  color: var(--code-color) !important;
+  background-color: #343942 !important;
+  padding: 0.2em 0.4em;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* ====================================================================== SQL Code Block Styling ====================================================================== */
+pre[class*="language-sql"], code[class*="language-sql"] {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #bbf7d0;
+  border-radius: 9px;
+  padding: 1em;
+  overflow-x: auto;
+  background-color: #343942 !important;
+  border: none !important;
+}
+
+pre[class*="language-sql"] .token.punctuation { color: #bbf7d0; }
+pre[class*="language-sql"] .token.keyword { color: #4fa3f7; font-weight: bold; }
+pre[class*="language-sql"] .token.string { color: #9fef00; }
+pre[class*="language-sql"] .token.comment { color: #6b7280; font-style: italic; }
+pre[class*="language-sql"] .token.function { color: #fcd34d; }
+pre[class*="language-sql"] .token.table { color: #34d399; }
+pre[class*="language-sql"] .token.column { color: #f472b6; }
+pre[class*="language-sql"] .token.operator { color: #e9950c; }
+pre[class*="language-sql"] .token.number { color: #a78bfa; }
+
+/* SQL Scrollbar */
+pre[class*="language-sql"]::-webkit-scrollbar { height: 8px; }
+pre[class*="language-sql"]::-webkit-scrollbar-thumb {
+  background: rgba(187, 247, 208, 0.5);
+  border-radius: 4px;
+}
+pre[class*="language-sql"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(187, 247, 208, 0.7);
+}
+
+/* ====================================================================== C++ Code Block Styling ====================================================================== */
+pre[class*="language-cpp"], code[class*="language-cpp"] {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
+  font-size: 1em;
+  line-height: 1.6;
+  color: #bbf7d0;
+  border-radius: 13px;
+  padding: 1em;
+  overflow-x: auto;
+  background-color: #343942 !important;
+  border: none !important;
+  margin: 1.2em 0;
+}
+
+pre[class*="language-cpp"] .token.punctuation { color: #bbf7d0; }
+pre[class*="language-cpp"] .token.keyword { color: #4fa3f7; font-weight: bold; }
+pre[class*="language-cpp"] .token.string { color: #9fef00; }
+pre[class*="language-cpp"] .token.comment { color: #6b7280; font-style: italic; }
+pre[class*="language-cpp"] .token.function { color: #fcd34d; }
+pre[class*="language-cpp"] .token.variable { color: #34d399; }
+pre[class*="language-cpp"] .token.operator { color: #e9950c; }
+pre[class*="language-cpp"] .token.number { color: #a78bfa; }
+
+/* C++ Scrollbar */
+pre[class*="language-cpp"]::-webkit-scrollbar { height: 8px; }
+pre[class*="language-cpp"]::-webkit-scrollbar-thumb {
+  background: rgba(187, 247, 208, 0.5);
+  border-radius: 4px;
+}
+pre[class*="language-cpp"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(187, 247, 208, 0.7);
+}
+
+/* ====================================================================== ARM Assembly Code Block Styling ====================================================================== */
+pre[class*="language-armasm"], code[class*="language-armasm"] {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
+  font-size: 1em;
+  line-height: 1.7;
+  color: #f8f8f2;
+  background-color: #282c34 !important;
+  border-radius: 12px;
+  padding: 1.2em;
+  overflow-x: auto;
+  border: none !important;
+  margin: 0em 0;
+}
+
+pre[class*="language-armasm"] .token.punctuation { color: #c0c5ce; }
+pre[class*="language-armasm"] .token.keyword { color: #61afef; font-weight: bold; }
+pre[class*="language-armasm"] .token.string { color: #98c379; }
+pre[class*="language-armasm"] .token.comment { color: #5c6370; font-style: italic; }
+pre[class*="language-armasm"] .token.function { color: #e5c07b; font-weight: bold; }
+pre[class*="language-armasm"] .token.register { color: #56b6c2; font-weight: bold; }
+pre[class*="language-armasm"] .token.operator { color: #d19a66; }
+pre[class*="language-armasm"] .token.number { color: #c678dd; }
+pre[class*="language-armasm"] .token.instruction { color: #e06c75; font-weight: bold; }
+
+/* ARM Scrollbar */
+pre[class*="language-armasm"]::-webkit-scrollbar { height: 8px; }
+pre[class*="language-armasm"]::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+pre[class*="language-armasm"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ====================================================================== Bash Code Block Styling ====================================================================== */
+pre[class*="language-bash"],
+code[class*="language-bash"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  background-color: #2d2d2d !important;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+/* Scrollbar Styling */
+pre[class*="language-bash"]::-webkit-scrollbar {
+  height: 6px;
+  background-color: #2d2d2d;
+}
+pre[class*="language-bash"]::-webkit-scrollbar-thumb {
+  background-color: #555555;
+  border-radius: 3px;
+}
+pre[class*="language-bash"]::-webkit-scrollbar-thumb:hover {
+  background-color: #777777;
+}
+
+/* Syntax Highlighting */
+pre[class*="language-bash"] .token.comment {
+  color: #6a9955;
+  font-style: italic;
+}
+pre[class*="language-bash"] .token.command {
+  color: #569cd6;
+}
+pre[class*="language-bash"] .token.option {
+  color: #9cdcfe;
+}
+pre[class*="language-bash"] .token.path {
+  color: #ce9178;
+}
+pre[class*="language-bash"] .token.variable {
+  color: #d7ba7d;
+}
+pre[class*="language-bash"] .token.string {
+  color: #ce9178;
+}
+pre[class*="language-bash"] .token.operator {
+  color: #d4d4d4;
+}
+pre[class*="language-bash"] .token.error {
+  color: #f44747;
+}
+
+/* ====================================================================== Python Code Block Styling ====================================================================== */
+pre[class*="language-python"] {
+    background-color: #282c34 !important;
+    padding: 16px !important;
+    border-radius: 6px !important;
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', monospace !important;
+    line-height: 1.5 !important;
+}
+
+pre[class*="language-python"] code {
+    color: #abb2bf !important;
+}
+
+pre[class*="language-python"] .token.keyword {
+    color: #c678dd !important;
+}
+
+pre[class*="language-python"] .token.function {
+    color: #61afef !important;
+}
+
+pre[class*="language-python"] .token.string {
+    color: #98c379 !important;
+}
+
+pre[class*="language-python"] .token.number {
+    color: #d19a66 !important;
+}
+
+pre[class*="language-python"] .token.comment {
+    color: #5c6370 !important;
+    font-style: italic !important;
+}
+
+pre[class*="language-python"] .token.operator {
+    color: #56b6c2 !important;
+}
+
+pre[class*="language-python"] .token.punctuation {
+    color: #abb2bf !important;
+}
+pre[class*="language-python"] .token.regex {
+    color: #e06c75 !important;
+}
+
+pre[class*="language-python"] .token.parameter {
+    color: #d19a66 !important;
+}
+
+pre[class*="language-python"] .token.class-name {
+    color: #e5c07b !important;
+}
+
+pre[class*="language-python"] .token.module {
+    color: #c678dd !important;
+}
+
+pre[class*="language-python"] .token.variable {
+    color: #e06c75 !important;
+}
+
+pre[class*="language-python"] .token.builtin {
+    color: #56b6c2 !important;
+}
+
+/* ====================================================================== JavaScript/TypeScript Code Block Styling ====================================================================== */
+pre[class*="language-javascript"],
+pre[class*="language-js"],
+pre[class*="language-typescript"],
+pre[class*="language-ts"],
+code[class*="language-javascript"],
+code[class*="language-js"],
+code[class*="language-typescript"],
+code[class*="language-ts"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #abb2bf;
+  background-color: #282c34 !important;
+  border-radius: 10px;
+  padding: 1.2em;
+  overflow-x: auto;
+  border: none !important;
+  margin: 1em 0;
+}
+
+pre[class*="language-javascript"] .token.keyword,
+pre[class*="language-js"] .token.keyword,
+pre[class*="language-typescript"] .token.keyword,
+pre[class*="language-ts"] .token.keyword {
+  color: #c678dd;
+  font-weight: bold;
+}
+
+pre[class*="language-javascript"] .token.function,
+pre[class*="language-js"] .token.function,
+pre[class*="language-typescript"] .token.function,
+pre[class*="language-ts"] .token.function {
+  color: #61afef;
+}
+
+pre[class*="language-javascript"] .token.string,
+pre[class*="language-js"] .token.string,
+pre[class*="language-typescript"] .token.string,
+pre[class*="language-ts"] .token.string {
+  color: #98c379;
+}
+
+pre[class*="language-javascript"] .token.number,
+pre[class*="language-js"] .token.number,
+pre[class*="language-typescript"] .token.number,
+pre[class*="language-ts"] .token.number {
+  color: #d19a66;
+}
+
+pre[class*="language-javascript"] .token.operator,
+pre[class*="language-js"] .token.operator,
+pre[class*="language-typescript"] .token.operator,
+pre[class*="language-ts"] .token.operator {
+  color: #56b6c2;
+}
+
+pre[class*="language-javascript"] .token.comment,
+pre[class*="language-js"] .token.comment,
+pre[class*="language-typescript"] .token.comment,
+pre[class*="language-ts"] .token.comment {
+  color: #5c6370;
+  font-style: italic;
+}
+
+/* JS/TS Scrollbar */
+pre[class*="language-javascript"]::-webkit-scrollbar,
+pre[class*="language-js"]::-webkit-scrollbar,
+pre[class*="language-typescript"]::-webkit-scrollbar,
+pre[class*="language-ts"]::-webkit-scrollbar { 
+  height: 8px; 
+}
+pre[class*="language-javascript"]::-webkit-scrollbar-thumb,
+pre[class*="language-js"]::-webkit-scrollbar-thumb,
+pre[class*="language-typescript"]::-webkit-scrollbar-thumb,
+pre[class*="language-ts"]::-webkit-scrollbar-thumb {
+  background: rgba(187, 247, 208, 0.5);
+  border-radius: 4px;
+}
+pre[class*="language-javascript"]::-webkit-scrollbar-thumb:hover,
+pre[class*="language-js"]::-webkit-scrollbar-thumb:hover,
+pre[class*="language-typescript"]::-webkit-scrollbar-thumb:hover,
+pre[class*="language-ts"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(187, 247, 208, 0.7);
+}
+
+/* ====================================================================== JSON Code Block Styling ====================================================================== */
+pre[class*="language-json"],
+code[class*="language-json"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #abb2bf;
+  background-color: #282c34 !important;
+  border-radius: 10px;
+  padding: 1.2em;
+  overflow-x: auto;
+  border: none !important;
+  margin: 1em 0;
+}
+
+pre[class*="language-json"] .token.property {
+  color: #e06c75;
+}
+
+pre[class*="language-json"] .token.string {
+  color: #98c379;
+}
+
+pre[class*="language-json"] .token.number {
+  color: #d19a66;
+}
+
+pre[class*="language-json"] .token.boolean {
+  color: #56b6c2;
+}
+
+pre[class*="language-json"] .token.null {
+  color: #c678dd;
+}
+
+/* JSON Scrollbar */
+pre[class*="language-json"]::-webkit-scrollbar { 
+  height: 8px; 
+}
+pre[class*="language-json"]::-webkit-scrollbar-thumb {
+  background: rgba(187, 247, 208, 0.5);
+  border-radius: 4px;
+}
+pre[class*="language-json"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(187, 247, 208, 0.7);
+}
+
+/* ====================================================================== HTML/XML Code Block Styling ====================================================================== */
+pre[class*="language-html"],
+pre[class*="language-xml"],
+code[class*="language-html"],
+code[class*="language-xml"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #abb2bf;
+  background-color: #282c34 !important;
+  border-radius: 10px;
+  padding: 1.2em;
+  overflow-x: auto;
+  border: none !important;
+  margin: 1em 0;
+}
+
+pre[class*="language-html"] .token.tag,
+pre[class*="language-xml"] .token.tag {
+  color: #e06c75;
+}
+
+pre[class*="language-html"] .token.attr-name,
+pre[class*="language-xml"] .token.attr-name {
+  color: #d19a66;
+}
+
+pre[class*="language-html"] .token.attr-value,
+pre[class*="language-xml"] .token.attr-value {
+  color: #98c379;
+}
+
+/* HTML/XML Scrollbar */
+pre[class*="language-html"]::-webkit-scrollbar,
+pre[class*="language-xml"]::-webkit-scrollbar { 
+  height: 8px; 
+}
+pre[class*="language-html"]::-webkit-scrollbar-thumb,
+pre[class*="language-xml"]::-webkit-scrollbar-thumb {
+  background: rgba(187, 247, 208, 0.5);
+  border-radius: 4px;
+}
+pre[class*="language-html"]::-webkit-scrollbar-thumb:hover,
+pre[class*="language-xml"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(187, 247, 208, 0.7);
+}
+
+/* ====================================================================== CSS Code Block Styling ====================================================================== */
+pre[class*="language-css"],
+code[class*="language-css"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #abb2bf;
+  background-color: #282c34 !important;
+  border-radius: 10px;
+  padding: 1.2em;
+  overflow-x: auto;
+  border: none !important;
+  margin: 1em 0;
+}
+
+pre[class*="language-css"] .token.selector {
+  color: #e06c75;
+}
+
+pre[class*="language-css"] .token.property {
+  color: #61afef;
+}
+
+pre[class*="language-css"] .token.value {
+  color: #98c379;
+}
+
+pre[class*="language-css"] .token.function {
+  color: #56b6c2;
+}
+
+/* CSS Scrollbar */
+pre[class*="language-css"]::-webkit-scrollbar { 
+  height: 8px; 
+}
+pre[class*="language-css"]::-webkit-scrollbar-thumb {
+  background: rgba(187, 247, 208, 0.5);
+  border-radius: 4px;
+}
+pre[class*="language-css"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(187, 247, 208, 0.7);
+}
+
+/* ====================================================================== PDF Export Styles ====================================================================== */
+
+@media print {
+  body {
+    background: white !important;
+    color: #333333 !important;
+  }
+
+  h1 { color: var(--h1-color) !important; break-before: avoid; }
+  h2 { color: var(--h2-color) !important; break-before: avoid; }
+  h3 { color: var(--h3-color) !important; break-before: avoid; }
+  h4 { color: var(--h4-color) !important; }
+  h5 { color: var(--h5-color) !important; }
+  h6 { color: var(--h6-color) !important; }
+
+  strong, b {
+    color: var(--bold-color) !important;
+    font-weight: 700 !important;
+  }
+
+  ul > li::marker { content: "➜ "; color: var(--list-color) !important; }
+  ol > li::marker { color: var(--list-color) !important; }
+
+:not(pre) > code,
+p > .cm-inline-code,
+li > .cm-inline-code,
+td > .cm-inline-code {
+  font-family: 'Roboto', sans-serif !important;
+  color: var(--code-color) !important;
+  background-color: #343942 !important;
+  padding: 0.2em 0.4em;
+  border-radius: 5px;
+  font-weight: bold;
+}
+p, span, div {
+  color: var(--default-text);
+}
+
+  table {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 12px solid #0d1117;
+    background: #0d1117;
+    box-shadow: none;
+  }
+
+  th {
+    color: #bbf7cf !important;
+    padding: 14px 18px !important;
+    background: rgb(40, 52, 50) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 4px solid #3da163 !important;
+    border-right: 1px solid #2f3033 !important;
+    text-align: center !important;
+  }
+
+  td {
+    color: #e2e8f0 !important;
+    padding: 12px 18px !important;
+    background: rgb(28, 29, 33) !important;
+    border-bottom: 1px solid #2f3033 !important;
+    border-right: 1px solid #2f3033 !important;
+  }
+
+  td:last-child, th:last-child {
+    border-right: none !important;
+  }
+
+  @page {
+    margin: 2cm;
+    size: A3;
+  }
+}
+
+
+@media print { 
+  @page {
+    margin: 10mm 0mm 10mm 0mm;
+  }
+  .print .markdown-preview-view {
+      -webkit-print-color-adjust: exact;
+      background: #0d1117 !important;
+      color: #F0F4FF;
+  }
+}
+/* ====================================================================== Noise Background ====================================================================== */
+.workspace-tabs .workspace-leaf .view-content,
+.workspace-tab-header-inner,
+.view-header {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuZGV2L3N2Z2pzIiB2aWV3Qm94PSIwIDAgNzAwIDcwMCIgd2lkdGg9IjcwMCIgaGVpZ2h0PSI3MDAiPjxkZWZzPjxmaWx0ZXIgaWQ9Im5ubm9pc2UtZmlsdGVyIiB4PSItMjAlIiB5PSItMjAlIiB3aWR0aD0iMTQwJSIgaGVpZ2h0PSIxNDAlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHByaW1pdGl2ZVVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJsaW5lYXJSR0IiPgoJPGZlVHVyYnVsZW5jZSB0eXBlPSJ0dXJidWxlbmNlIiBiYXNlRnJlcXVlbmN5PSIwLjIiIG51bU9jdGF2ZXM9IjQiIHNlZWQ9IjE1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiB4PSIwJSIgeT0iMCUiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHJlc3VsdD0idHVyYnVsZW5jZSI+PC9mZVR1cmJ1bGVuY2U+Cgk8ZmVTcGVjdWxhckxpZ2h0aW5nIHN1cmZhY2VTY2FsZT0iNDAiIHNwZWN1bGFyQ29uc3RhbnQ9IjAuNzUiIHNwZWN1bGFyRXhwb25lbnQ9IjIwIiBsaWdodGluZy1jb2xvcj0iI2JlYjdkZiIgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBpbj0idHVyYnVsZW5jZSIgcmVzdWx0PSJzcGVjdWxhckxpZ2h0aW5nIj4KICAgIAkJPGZlRGlzdGFudExpZ2h0IGF6aW11dGg9IjMiIGVsZXZhdGlvbj0iMTAwIj48L2ZlRGlzdGFudExpZ2h0PgogIAk8L2ZlU3BlY3VsYXJMaWdodGluZz4KICAKPC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSJ0cmFuc3BhcmVudCI+PC9yZWN0PjxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjYmViN2RmIiBmaWx0ZXI9InVybCgjbm5ub2lzZS1maWx0ZXIpIj48L3JlY3Q+PC9zdmc+");
+}
