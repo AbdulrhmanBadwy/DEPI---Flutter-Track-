@@ -8,18 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "aa35917b5cb8cd43",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Flutter_Explain/Pasted image 20260131120419.png"
-              },
-              "icon": "lucide-image",
-              "title": "Pasted image 20260131120419"
-            }
-          },
-          {
             "id": "a86f2860b0b9d4b6",
             "type": "leaf",
             "state": {
@@ -33,8 +21,7 @@
               "title": "Flutter"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -200,24 +187,24 @@
   },
   "active": "a86f2860b0b9d4b6",
   "lastOpenFiles": [
-    "Pasted image 20260206171023.png",
-    "Pasted image 20260206170927.png",
-    "Pasted image 20260206163231.png",
-    "Flutter_Explain/Pasted image 20260202212734.png",
-    "Flutter_Explain/Pasted image 20260203103956.png",
-    "Flutter_Explain/Pasted Image 20260203103119_494.png",
-    "Flutter_Explain/Pasted image 20260203100049.png",
-    "Flutter_Explain/Pasted image 20260203094041.png",
-    "Flutter_Explain/Pasted Image 20260202194323_274.png",
-    "Flutter_Explain/Pasted image 20260203064857.png",
-    "Flutter_Explain/Pasted image 20260203071433.png",
-    "Flutter_Explain/Flutter.md",
+    "Pasted image 20260208173056.png",
+    "Pasted image 20260208165733.png",
+    "Pasted image 20260208165541.png",
+    "Pasted image 20260208144256.png",
+    "Pasted image 20260208144006.png",
+    "Pasted image 20260208143335.png",
+    "Pasted image 20260208142550.png",
+    "Pasted image 20260208142517.png",
+    "Pasted image 20260208142416.png",
+    "Pasted image 20260208142254.png",
+    "Pasted image 20260208142139.png",
+    "Tasks/Flutter Tasks.md",
+    "Excalidraw/Drawing 2026-02-01 12.51.30.excalidraw.md",
+    "Excalidraw/Drawing 2026-02-01 16.18.32.excalidraw.md",
+    "Excalidraw/Drawing 2026-02-01 20.08.45.excalidraw.md",
     "Excalidraw/Drawing 2026-02-02 19.43.20.excalidraw.md",
     "Excalidraw/Drawing 2026-02-03 10.25.26.excalidraw.md",
-    "Excalidraw/Drawing 2026-02-01 16.18.32.excalidraw.md",
-    "Tasks/Flutter Tasks.md",
-    "Excalidraw/Drawing 2026-02-01 20.08.45.excalidraw.md",
-    "Excalidraw/Drawing 2026-02-01 12.51.30.excalidraw.md",
+    "Flutter_Explain/Flutter.md",
     "Excalidraw",
     "Tasks",
     "Untitled 1.base",

@@ -91,11 +91,9 @@ class _ProductScreenState extends State<ProductScreen> {
               Text('\$${item.price}'),
             ],
           ),
-
           IconButton(
             onPressed: () {
               setState(() {
-
                 item.isFavourite = !item.isFavourite;
               });
             },

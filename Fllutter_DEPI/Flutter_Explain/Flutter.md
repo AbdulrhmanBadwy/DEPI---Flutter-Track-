@@ -73,7 +73,7 @@
 
 
 ### 2. Stateless Widgets 
-*مفيش حركه الشاشة بالنسبالي هي ثابته مفيش  dynamic*
+*مفيش حركه الشاشة بالنسبالي هي ثابته مفيش  dynamic مفيش لون بيتغير مفيش اي حاجه*
 `One Class `
 ### 3. Inherit Widgets 
 
@@ -104,6 +104,14 @@ ppBar: AppBar(
 ```
 
 
+### How can use own Image and  fonts on your App 
+`1- First go to pubspec.yaml` 
+`2- scroll down to` *uses-material-desing = true*
+`3- Click Enter After it` 
+`4- Make two spaces by mastara on keyboard `
+`5- write` *assets:* `click enter` 
+`6- write` *- assets/images*` enter`
+`7- write` *- assets/fonts*
 ### 4.Text 
 *Flexible Widget*
 ### 5. Stateless Widget
@@ -170,14 +178,6 @@ SizedBox(
 
 ### CircleAvater
 
-#### How can use own Image and  fonts on your App 
-1- First go to pubspec.yaml 
-2- scroll down to *uses-material-desing = true*
-3- Click Enter After it 
-4- Make two spaces by mastara on keyboard 
-5- write *assets:* click enter 
-6- write *- assets/images* enter
-7- write *- assets/fonts*
 
 **CircleAvatar** *مش بتتدعم انها تحرك الصورة اللي جواها عشان كدا *
 *to make Photo Rounded *
@@ -605,3 +605,393 @@ class HomeScreen extends StatelessWidget {
 
 
 
+### Images 
+`image.asset'iamgePath'` *دا لو الصورة لوحديها هتحطها كويدجت منفرده كدا*
+**لو انت بقي عندك كونتينر وعاوز الصوره تاخد شكله لو روندت او حاجه هتحط الصوره جوا ال  BoxDecoration **
+
+![[Pasted image 20260208144006.png]]
+
+
+### Wrap && SingleChildScrollView 
+
+`Wrap` : *دا بيحل مشاكل ال Row  لما يكون فيه عدد من العناصر بس العرض بتاعهم مش مكفي فا دي بيقي بتنزل سطر*
+
+`SingleChildScrollView` *بتعالج بقي نفس المشكلة بس للكولوم *
+*ممكن تستخدمها برضك مع ال  Row  وتغير ال  ScrollDirection  تخليه  Horizontal*
+
+### MaterialButton 
+
+
+###  إزاي تغير من شاشه الي شاشه في ال NavigationButtonBar
+`1- Make your Screens as Widgets in Seperated Files `
+![[Pasted image 20260208142038.png]]
+
+`2- Make List Of Widgets and Put these Screens in HomeScreen File`
+![[Pasted image 20260208142139.png]]
+
+`3- بتروح تعمل متغير يشيل ال  current index  وتخلي لما تضغط عليه يشيل اندكشس الضغطه علي انهي ايقون `
+![[Pasted image 20260208142254.png]]
+
+`4- put paramater currentIndex in Navigation = _currentIndex`
+![[Pasted image 20260208142416.png]]
+
+`5- put your list of widgets in body: and give it index  `
+![[Pasted image 20260208142550.png]]
+
+*بس خلاص بكدا تقدر تضيف بقي اللي انت عاوز*
+
+**دا الكود بتاع ال  HomeScreen**
+
+```dart
+import 'package:flutter/material.dart';  
+import 'package:third_session/screens/cart_screen.dart';  
+import 'package:third_session/screens/product_screen.dart';  
+import 'package:third_session/screens/profile_screen.dart';  
+import 'package:third_session/screens/whilst_screen.dart';  
+  
+class HomeScreen extends StatefulWidget {  
+  const HomeScreen({super.key});  
+  
+  @override  
+  State<HomeScreen> createState() => _HomeScreenState();  
+}  
+  
+class _HomeScreenState extends State<HomeScreen> {  
+  int _currentIndex = 0;  
+  
+  List<String> titles = [  
+    'Home Screen',  
+    'Cart Screen',  
+    'Wishlist Screen',  
+    'Profile Screen',  
+  ];  
+  
+  List<Widget> body = [  
+    ProductScreen(),  
+    CartScreen(),  
+    WishlistScreen(),  
+    ProfileScreen(),  
+  ];  
+  
+  @override  
+  Widget build(BuildContext context) {  
+    return Scaffold(  
+      drawer: Drawer(),  
+      appBar: AppBar(  
+        title: Text('Smart Shop'),  
+        centerTitle: true,  
+        // leading: Text('Hello'),  
+        actions: [  
+          IconButton(  
+            onPressed: () {  
+              debugPrint('Clicked on Cart Icon!');  
+            },  
+            icon: Icon(Icons.shopping_cart_outlined),  
+          ),  
+        ],  
+      ),  
+  
+      body: body[_currentIndex],  
+      bottomNavigationBar: BottomNavigationBar(  
+        currentIndex: _currentIndex,  
+        selectedItemColor: Colors.black,  
+        enableFeedback: true,  
+        onTap: (int index) {  
+          setState(() {  
+            _currentIndex = index;  
+          });  
+          debugPrint('My current index $_currentIndex');  
+        },  
+        type: BottomNavigationBarType.fixed,  
+        items: [  
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),  
+          BottomNavigationBarItem(  
+            icon: Icon(Icons.shopping_cart_outlined),  
+            label: 'Cart',  
+          ),  
+          BottomNavigationBarItem(  
+            icon: Icon(Icons.favorite_outline_rounded),  
+            label: 'Wishlist',  
+          ),  
+          BottomNavigationBarItem(icon: Icon(Icons.person_2), label: 'Profile'),  
+        ],  
+      ),  
+    );  
+  }  
+}
+```
+
+
+
+
+### Stack
+
+*تعرف انت الشكل الي فيها صوره وفوقيها كدا ايقونه وكنت بتقول اعملها إزاي ومش عاارف ايه هو دا بقي تستخدمه عشان تعمل الحوار دا 🫣🫣 ايوه ايوه هو دا 👇👇*
+![[Pasted image 20260208143335.png]]
+
+
+
+### لو عندك ايقونة وعاوز تحولها الي لون مختلف لما تضغط عليها 
+![[Pasted image 20260208144256.png]]
+
+
+### ListLittle
+
+*زي نظام كدا كارد بترتب فيها النصوص والأيقونات اللي في الأول وكمان لو فيه ايقونة في الآخر وكدا يعني بدل ما تستخدم Row , Column  وتصغر وتكبر النصوص هي بتبقي واخده الأستيل جاهز*
+![[Pasted image 20260208173056.png]]
+
+![[Pasted image 20260208165541.png]]
+![[Pasted image 20260208165733.png]]\
+```dart
+Card(  
+  elevation: 5.5,  
+  shadowColor: Colors.black,  
+  shape: RoundedRectangleBorder(  
+    borderRadius: BorderRadius.circular(20)  
+  ),  
+  color: Colors.white70,  
+  child: ListTile(  
+    onTap: (){  
+    },  
+    title: Text('Abdulrhman Badwy'),  
+    subtitle: Text('Flutter Developer'),  
+    leading: Icon(Icons.developer_board_off),  
+    trailing: Icon(Icons.slideshow),  
+  ),  
+),
+```
+
+### Buttons
+*بيقولك في انواع زي ال  outlineButton , FlatButton, RaiseButton مخطط ان يتشالو عشان تم استبدالهم بتلت انواع ال  TextButton, ElevatedButton, OutlinedButton *
+`1-Text Button`
+`2- ElevatedButton`
+`3- OutlinedButton`
+
+
+### GestureDetector & InkWell
+
+`GestureDector`
+- يتعامل مع **الـ gestures فقط**
+- لا يعطي أي تأثير بصري
+- مفيش Animation
+- يمكنه التعامل مع gestures كثيرة:
+    - onTap
+    - onDoubleTap
+    - onLongPress
+    - onPanUpdate
+    - drag
+    - scale
+        
+```dart
+GestureDetector(
+  onDoubleTap: () {
+    print("double tap");
+  },
+  child: Container(
+    width: 100,
+    height: 100,
+    color: Colors.red,
+  ),
+)
+
+```
+
+`InkWell`
+- نفس onTap تقريبًا
+- لكنه مصمم للـ **Material Design**
+- يعطي:
+    - Ripple effec
+    - highlight effect
+- يجب أن يكون داخل **Material widget** لكي يظهر التأثير
+
+```dart
+Material(
+  child: InkWell(
+    onTap: () {},
+    child: Padding(
+      padding: EdgeInsets.all(20),
+      child: Text("Click"),
+    ),
+  ),
+)
+
+```
+
+**القاعده الذهبية**
+*- لو تريد **ضغط عادي مع شكل جميل** → InkWell*
+*- لو تريد **gesture متقدم (drag, scale, complex gestures)** → GestureDetector*
+
+**مثال عملي**
+`Product card in Store`
+*تستخدم*:
+-* InkWell → لأنك تريد ripple*
+
+`لعبة أو سحب عنصر على الشاشة`
+
+*تستخدم:*
+*- GestureDetector → لأنك تحتاج drag و gestures*
+
+
+### Navigation (& passing parameters between screens)
+
+*زماان كنا شغالين علي اسكرين واحده ودلوقتي محتاجين نشتغل علي اكتر من سكرين ودا الطبيعي في كل تطبيق*
+
+*بص ياعم بدوي دلوقتي انت عندك اكتر من سكرين وعاوز تتحرك بينهم هتعمل ايه طب انت دلوقتي عاوز تبعت داتا من اسكرين لسكرين هتعمل ايه برضك يييجي هنا الكل السحري في فلاتر الا وهو تنتنااا* `Navigator `
+**شغال زي ال  Stack  يعني انت لما تروح الصفحه التانية يبقي كدا عندك تحت في ال  Stack  الصفحه الأولي وفوقها التانية لما تيجي تعمل  POP اللي فوق هو اللي هيتشال طبقا لمبدأ  Last in first out**
+
+#### طب ايه هو ال  Navigator  ونستخدمه إزاي 
+
+*وليكن انت واقف في الصفحه الأولي وعاوز تروح علي الصفحه التانية هتعمل ايه هيبقي عندك اكشن تحطه بقي في زرار في اي حته اهم حاجه يكون فيه  onPressed هتروح جواها*
+```dart
+//  لو انت في الأولي وعاوز تروح للتانية 
+ElevatedButton(
+	onPressed: (){
+		Navigator.push(context,MaterialPageRoute(builder:(context){
+			return SecondScreen(); 
+		}));
+	}
+),
+
+// لو انت في التانية وعاوز ترجع تاني للأولي 
+ElevatedButton(
+	onPressed: (){
+		Navigator.pop(context); 
+	}
+),
+
+
+```
+*كدا انت لما تضغط علي الزرار دا هيوديك علي الصفحه التانية ,ولما تروح الصفحه التانية وتضغط هترجع تاني للأولي  *
+
+بس انت قولت اننا ممكن نبعت داتا بين الأسكرينز وبعضها اقولك ياعم بدوي في طريقتين
+
+`1- تبعت الداتا عن طريق الكونستركتور` *هتروح لكلس الصفحه التانية وتعمل فيه المتغيرات من النوع اللي انت عاوز تستقبله سواء بقي كانت متغيرات عاديه int , string   او بقي من نوع كلاس معين انت عامله وبس كدا دي الطريقه الأولي *
+
+```dart 
+// First Screen 
+ElevatecButton(
+	onPressed: (){
+		Navigator.push(context,MaterialPageroute(builder:(contex){
+			return HomeScreen(id:10 , name: 'Badwy'); 
+		})); 
+	}
+),
+
+********
+// Second Screen
+
+class SecondScreen extends StatelessWidget{
+	
+	final int id ; 
+	const SecondScreen({super.key , required this.id}); 
+	
+	@override
+	Widget build(BuildContext context){
+		reutrn Scaffold(
+			body: Text('$id'),
+		);
+	}
+}
+
+```
+
+
+`2- عن طريق ال  setting  ودا براميتر بنضاف بعد ال  builder`
+```dart 
+// First Screen
+ElvatedButton(
+	onPressed:(){
+		Navigator.push(context,MaterialPagerRoute(builder : (contex){
+			return SecondScreen(),
+		} , settings: RouteSettings(arguments: ProductDetails(id: 200)) 
+		))
+	}
+),
+
+class ProductDetails{
+	int id ; 
+	ProductDetails({required this.id}); 
+}
+
+
+// Second Screen
+class SecondScreen extends StatelessWidget{
+	
+	final int id ; 
+	const SecondScreen({super.key , required this.id}); 
+	
+	@override
+	Widget build(BuildContext context){
+		ProductDetails dataReceived = ModalRoute.of(context)!.settings.arguments as ProductDetails; 
+		reutrn Scaffold(
+			body: Column(
+				childern [
+					Text('$id'),
+					Text('${dataReceived.description} \n ${dataReceived.title} \n ${dataReceived.id}'),
+				]
+			),
+		);
+	}
+}
+```
+
+*لو لاحظت ياعم بدوي هنا بعتنا في ال  Settings  حاجه من نوع كلاس انت عامله في الآخر عاادي يعني اي نوع اهم حاجه لما تروح الكلاس التاني تعرف انت هتستقبليه إزاي هناك زي ما انا عاممل كدا *
+**الموصوع سهل بس عاوز تركيز**
+
+*****
+**عندنا طرثقة تانية اسمها ال pushNamed  بتسهل علينا القصه دي كلها**
+
+`1- Make a Class named app_route`
+```dart 
+class AppRoutes{  
+  static const String firstScreen = '/first_screen';  
+  static const String secondScreen = '/second_screen';  
+  static const String thirdScreen = '/third_screen';  
+}
+```
+
+`2- Make a class named router_generator  `
+`3- Make a function called generateRoute(RouteSettings settings) `
+```dart
+import 'package:flutter/material.dart';  
+import 'package:self_learn/routing/app_route.dart';  
+import 'package:self_learn/screens/first_screen.dart';  
+import 'package:self_learn/screens/second_screen.dart';  
+import 'package:self_learn/screens/third_screen.dart';  
+  
+class RouterGenerator {  
+  static Route generateRoute(RouteSettings settings) {  
+    final arg = settings.arguments;  
+  
+    switch (settings.name) {  
+      case AppRoutes.firstScreen:  
+        return MaterialPageRoute(  
+          settings: RouteSettings(name: AppRoutes.firstScreen),  
+          builder: (context) {  
+            return FirstScreen();  
+          },  
+        );  
+      case AppRoutes.secondScreen:  
+        return MaterialPageRoute(  
+          settings: RouteSettings(name: AppRoutes.secondScreen),  
+  
+          // Send argument on  argument  
+          // settings: RouteSettings(arguments: arg),  
+          // Send argument on Constructor          builder: (context) =>  
+              SecondScreen(productDetails: arg as ProductDetails),  
+        );  
+      case AppRoutes.thirdScreen:  
+        return MaterialPageRoute(  
+            settings: RouteSettings(name: AppRoutes.thirdScreen),  
+  
+            builder: (context) => ThirdScreen()  
+        );  
+  
+      default:  
+        return MaterialPageRoute(builder: (context)=> Scaffold(  
+          body: Center(child: Text('No Route found'),),  
+        ));  
+    }  
+  }  
+}
+```

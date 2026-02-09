@@ -43,12 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: Icon(Icons.shopping_cart_outlined),
           ),
-          // IconButton(
-          //   onPressed: () {
-          //     print('Clicked on Cart Icon!');
-          //   },
-          //   icon: Icon(Icons.shopping_cart_outlined),
-          // ),
         ],
       ),
 
@@ -58,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: Colors.black,
         enableFeedback: true,
         onTap: (int index) {
-
           setState(() {
             _currentIndex = index;
           });

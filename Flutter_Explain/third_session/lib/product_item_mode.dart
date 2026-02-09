@@ -14,12 +14,12 @@ class ProductItemModel {
   static List<ProductItemModel> listOfItems = [
     ProductItemModel(
       name: 'Cozy Knit Sweater',
-      image: 'assets/cloths/corzy.png',
+      image: 'assets/cloths/crozy_knit_sweater.png',
       price: 100,
     ),
     ProductItemModel(
       name: 'Classic Leather Boots',
-      image: 'assets/cloths/classic_shoes.png',
+      image: 'assets/cloths/classic_leather_boots.png',
       price: 100,
     ),
     ProductItemModel(
@@ -29,12 +29,12 @@ class ProductItemModel {
     ),
     ProductItemModel(
       name: 'Urban Streetwear Jacket',
-      image: 'assets/cloths/streetwear.png',
+      image: 'assets/cloths/urban_streetwear_jacket.png',
       price: 100,
     ),
     ProductItemModel(
       name: 'Vintage Denim Jeans',
-      image: 'assets/cloths/jenus.png',
+      image: 'assets/cloths/vintage_jeans.png',
       price: 100,
     ),
     ProductItemModel(
