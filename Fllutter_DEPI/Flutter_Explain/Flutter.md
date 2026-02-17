@@ -114,6 +114,14 @@ ppBar: AppBar(
 `7- write` *- assets/fonts*
 ### 4.Text 
 *Flexible Widget*
+
+```dart 
+Text('Abdulrhman Badwy', 
+	style: TextStyle(fonstSize = 10 , fontWeight = FontWeight.bold ),
+	textDirection : TextDirection.rtl,
+	maxLine = 3 , 
+)
+```
 ### 5. Stateless Widget
 
 ### 6. Container 
@@ -161,7 +169,7 @@ ppBar: AppBar(
 ### Margin 
 *فواصل خارجية*
 
-### SizeBox
+### SizedBox
 
 ```dart
 SizedBox(width: 20, height: 20,),
@@ -345,9 +353,48 @@ appBar: AppBar(
 ```
 
 
+
+### Switch 
+
+![[Pasted image 20260212070712.png]]
+
+```dart 
+Switch(
+value: true , 
+onChanged: (value){
+	setState({
+		
+	});
+}
+),
+```
+
+### Radio 
+
+![[Pasted image 20260212071146.png]]
+
+```dart
+string groupValue = null , 
+Radio(value: 'Answer one ' , groupValue: groupValue , onChanged: (value){
+	setState({
+		groupValue = value ; 
+	});
+}),
+Radio(value: 'Answer two ' , groupValue: groupValue , onChanged: ),
+Radio(value: 'Answer three ' , groupValue: groupValue, onChanged: ),
+```
 ### TextFiled 
+
 ![[Pasted image 20260203071433.png]]
 ![[Pasted image 20260203071557.png]]
+
+### TextFormField
+*دا في حاجة اسمها ال  Controller  دا بقي بيخزن النص اللي انت بتكتبه جواه عشان لو عاوز تضيفه في حته تانية او تعمل بيه اي حاجة*
+![[Pasted image 20260213205154.png]]
+*هنا هياخد منك متغير من نوع الكلاس وهتعمل  default constructor  بعد كدا تروح تستخدمه بقي في ال  Controller 👇👇*
+![[Pasted image 20260213205323.png]]
+*وبياخد نفس البرامتر بتاعت ال  Textfiled  العادي*
+
 ### Grid View 
 **Scrollable**
 ![[Pasted image 20260203094041.png]]
@@ -384,6 +431,10 @@ GridView(
 ### GridView . builder 
 *دي بتخليك ترندر علي حسب الطلب مش كله مره واحده عشان مش تحمل علي المعالج وكارت الشاشة خليك فهمان 🫣*
 ![[Pasted image 20260203100049.png]]
+
+### ListView.builder & ListView.Seperated
+*بتخلي الscroll  بالطول و كل عنصر واخد عرض الشاشة كدا مش زي ال gridView  بيحط اكتر من عنصر في السطر *
+وكمان حته ال  Builder  دي بتعمل حاجة اسمها  lazy render  ودي بترند ال الويدجت اللي ظاهره بس 
 ### Expanded
 *انت هنا بتقوله خد الباقي من الشاشه كله*
 ![[Pasted image 20260203094227.png]]
@@ -606,6 +657,7 @@ class HomeScreen extends StatelessWidget {
 
 
 ### Images 
+`image.network(URL)`
 `image.asset'iamgePath'` *دا لو الصورة لوحديها هتحطها كويدجت منفرده كدا*
 **لو انت بقي عندك كونتينر وعاوز الصوره تاخد شكله لو روندت او حاجه هتحط الصوره جوا ال  BoxDecoration **
 
@@ -831,8 +883,83 @@ Material(
 *تستخدم:*
 *- GestureDetector → لأنك تحتاج drag و gestures*
 
+### Light and Dark Theme 
+*لما يكون فيه حاجات ثابتة علي مستوي التطبيق بتاعك مثلا زي ان كل  heading 1  لونهم احمر او اي لون فانت مش هتروح عند كل واحد وتديه لون انت بتعمل زي نظام شكل ثابت يتطبق عليهم هما الكل*
 
-### Navigation (& passing parameters between screens)
+**هتروح تعمل كلاس اسمه وليكن  AppThemeData**
+![[Pasted image 20260213073945.png]]
+```dart
+import 'package:flutter/material.dart';  
+  
+class AppThemeData{  
+  static final ThemeData lightTheme = ThemeData(  
+    brightness: Brightness.light,  
+    primaryColor: Colors.blue,  
+    primaryColorLight: Colors.blue.shade100,  
+    primaryColorDark: Colors.blue.shade900,  
+    scaffoldBackgroundColor: Colors.white,  
+    textTheme: TextTheme(  
+      bodySmall: TextStyle(  
+        fontSize: 12,  
+        fontWeight: FontWeight.normal,  
+        color:  Colors.black,  
+      ),  
+      bodyMedium: TextStyle(  
+          fontSize: 14,  
+          fontWeight: FontWeight.normal,  
+          color: Colors.black  
+      ),  
+      bodyLarge: TextStyle(  
+        fontWeight: FontWeight.bold,  
+        fontSize: 16,  
+        color: Colors.black,  
+      ),  
+    ),  
+    appBarTheme: AppBarTheme(  
+      backgroundColor: Colors.blue,  
+      elevation: 2,  
+      centerTitle: true,  
+    ),  
+    elevatedButtonTheme: ElevatedButtonThemeData(  
+      style: ElevatedButton.styleFrom(  
+        backgroundColor: Colors.white,  
+        foregroundColor: Colors.black,  
+      ),  
+    ),  
+  );  
+  static final ThemeData darkTheme = ThemeData(  
+    brightness: Brightness.dark,  
+    primaryColor: Colors.blue.shade800,  
+    primaryColorLight: Colors.blue.shade600,  
+    primaryColorDark: Colors.blue.shade400,  
+    scaffoldBackgroundColor: Colors.black,  
+    textTheme: TextTheme(  
+      bodySmall: TextStyle(  
+        fontSize: 12,  
+        fontWeight: FontWeight.normal,  
+        color:  Colors.white,  
+      ),  
+      bodyMedium: TextStyle(  
+          fontSize: 14,  
+          fontWeight: FontWeight.normal,  
+          color: Colors.white  
+      ),  
+      bodyLarge: TextStyle(  
+        fontWeight: FontWeight.bold,  
+        fontSize: 16,  
+        color: Colors.white,  
+      ),  
+    ),  
+    appBarTheme: AppBarTheme(  
+      backgroundColor: Colors.black,  
+      elevation: 2,  
+      centerTitle: true,  
+    ),  
+  
+  );  
+}
+```
+### Basic Navigation (& passing parameters between screens)
 
 *زماان كنا شغالين علي اسكرين واحده ودلوقتي محتاجين نشتغل علي اكتر من سكرين ودا الطبيعي في كل تطبيق*
 
@@ -939,7 +1066,7 @@ class SecondScreen extends StatelessWidget{
 **الموصوع سهل بس عاوز تركيز**
 
 *****
-**عندنا طرثقة تانية اسمها ال pushNamed  بتسهل علينا القصه دي كلها**
+**عندنا طريقة تانية اسمها ال pushNamed  بتسهل علينا القصه دي كلها**
 
 `1- Make a Class named app_route`
 ```dart 
@@ -995,3 +1122,293 @@ class RouterGenerator {
   }  
 }
 ```
+
+### GoRoter : Navigation & passing data 
+*this is a package that we can import it in pubspec.yaml* `go_router: ^17.1.0`
+*لازم تكون عارف تستخدم الحاجة باكتر من طريقة*
+![[studio64_KxmEeRrPHa.png]]
+![[studio64_cWalHfz76c.png]]
+![[studio64_DRBZjzAA7q.png]]
+![[studio64_JqkEW2lrPn.png]]
+
+*بس كدا هتروح عند كل اسكرين في مكان الضغط هتقوله*`context.push/pushName/pushReplacement(AppRoutes.ScreenName , extra : )`
+*extra  عشان تباصي فيها المتغيرات اللي الأسكرينه عاوزها *
+
+
+
+
+
+## Responsive and Adaptive UI 
+
+### MediaQuery
+
+`MediaQuery.of(context).size.width `: *بتقوله ياخد عرض الشاشة *
+`MediaQuery.of(context).size.height: ` *بتقوله ياخد طول الشاشة ممكن تضرب بقي في اي نسبة انت عاوزها *
+
+*بتعرفني الجهاز بتاعي هو دلوقتي بالطول ولا بالعرض*
+![[Pasted image 20260216162024.png]]
+### شوية ويدجت بتساعد ان التطبيق يكون Responsive
+#### Expanded 
+*لما اخليها parent  لويدجت تانية بقولها روحي خدي المساحه المتبقية مبيبص علي العرض بتاع الويدجت نفسها*
+![[Pasted image 20260216163520.png]]
+
+#### Flexible 
+
+![[Pasted image 20260216164013.png]]
+*بتتأقلم مع المحتوي اللي جواها*
+![[Pasted image 20260216164134.png]]
+
+### Adaptive UI 
+#### LayoutBuilder
+![[Pasted image 20260216172340.png]]
+
+
+
+``
+# State Management
+## Some Basics
+
+![[Pasted image 20260209210822.png]]
+![[Pasted image 20260209211041.png]]
+
+
+*عندنا حاجات كتيره ممكن نستخدمه عشان نعمل بيها ال  State management *
+![[Zoom_6OQP8mIdSh.png]]
+`1- setState`
+![[Zoom_6Sd1jO9W4S.png]]
+
+**اشهر ال  state management**
+
+`1- Bloc` : *افضل وحده في العموم *
+`2- Riverpod`
+`3- Redux`
+`4- Getx`
+`5- Provider` *Projects Medium*
+*افضل واحده في كل حاجه علي حسب it depends*   
+*كل واحده ليها مميزاتها وعيبوبها*
+
+![[Pasted image 20260209211819.png]]
+
+## Provider 
+
+### هو احنا ليه بنستخدم  State Management  
+
+
+**Separation of Concern** 
+*يعني ايه دي بقي يا عم بدوي يا متعلم بره وجوه اقولك يا حبيب عمك بدوي دي انت بتفصل ال UI  عن ال Logic عشان الدنيا متبقاش خلطبيطا بالصلصة ولو اي حد فيهم اتغير ميأثرش علي التاني*
+###  طب إزاي اطبق ال  Provider 
+*بص ياعم بدوي انت هتروح تعمل فولدر وتحط جواه ملف اسمع  Controller  و تعمل جواه كلاس تخليه يورث من ChangeNotifier*
+`1-Make a class and make it inherit from the ChangeNotifier`
+![[Pasted image 20260213220209.png]]
+*تاني حاجة هتروح زي الشاطر تكتب اللوجيك بتاعك جوه الكلاس سواء بقي عاوز تضيف عنصر تحذف عنصر مش عاارف ايه اكتبه جوه الكلاس ومتنساش ال SetState  بتاعت ال  Provider  اللي هي  notifyListeners*
+
+`2- Write your logic in this class and don't forget the SetState of Provder that Called notifyListeners`
+![[Pasted image 20260213221237.png]]
+**لاحظ هنا انت عملت ال  Provider  بس المشكلة عندك انك مش عاارف تستخدم نسخه واحده منه تكون مسمعة في كل الإسكرينز اللي عندك **
+**خلي بالك البشمهندس جوبا هيمسكك ينفخك لو شافك عامل  global Variable  من المحرمات الحاجة دي**
+
+*الحل انك هتروح في ملف ال  main  وتروح علي  MaterialApp  وتعملها راب  ChangeNotifierProvider  الويدجت دي بتديك براميتر اسمه  Create  بيخليك تعمل  Return  لل  Provider  بتاعك *
+	عارف دا عامل زي فكرة الشجرة كدا لما تحط المية في الجذر بتوصل لباقي الأفرع هنا بالضبط عملنا كدا حطينا نسخة من ال  Provider  بتاعنا  في الجذر عشان كل الإسكرينز التانية تعرف تعمل  Access  عليه ويكون واحد بينهم هما الكل 
+![[Pasted image 20260213223352.png]]
+
+*طب انت بعد ما عملت دا كله عاوز تروح بقي تستخدم نفس النسخه في الإسكرين اللي انت عاوزها هتعمل ايه هتروح للأسكرين وتعمل كدا 👇👇* وتستخدم بقي النسخة اللي موجوده عندك دي 
+![[Pasted image 20260213225531.png]]
+
+*Consumer Widget  دي وظيفتها انها تخلي الحته اللي هي بتراب عليها بس هي اللي يتم عمل ليها ريبيلد من اول وجديد بدل ما الإسكرين كلها يتعمل ليها ريبلد *
+![[Pasted image 20260213230818.png]]
+
+**Summary for all We do**
+![[Pasted image 20260213231549.png]]
+
+### الملفات اللي عملناها لحد الآن 
+![[studio64_IklqvybISn.png]]
+*Main File*
+```dart 
+import 'package:flutter/material.dart';  
+import 'package:fourth_session/controllers/todo_controller.dart';  
+import 'package:fourth_session/screens/home_screen.dart';  
+import 'package:provider/provider.dart';  
+  
+void main(){  
+runApp(const MyApp());  
+}  
+  
+class MyApp extends StatelessWidget {  
+  const MyApp({super.key});  
+  
+  @override  
+  Widget build(BuildContext context) {  
+    return ChangeNotifierProvider(  
+      create: (_)=> TodoController() ,  
+      child: MaterialApp(  
+        home: HomeScreen(),  
+      ),  
+    );  
+  }  
+}
+```
+
+*home_screen*
+```dart
+import 'package:flutter/material.dart';  
+import 'package:fourth_session/controllers/todo_controller.dart';  
+    import 'package:provider/provider.dart';  
+  
+class HomeScreen extends StatefulWidget {  
+  const HomeScreen({super.key});  
+  
+  @override  
+  State<HomeScreen> createState() => _HomeScreenState();  
+}  
+  
+class _HomeScreenState extends State<HomeScreen> {  
+  @override  
+  Widget build(BuildContext context) {  
+    final todoController = Provider.of<TodoController>(context , listen: false);  
+    return Scaffold(  
+      appBar: AppBar(title: Text('Todo App'), centerTitle: true),  
+      body: ListView(  
+        children: [  
+          Padding(  
+            padding: const EdgeInsets.all(16.0),  
+            child: Row(  
+              mainAxisSize: MainAxisSize.min,  
+              children: [  
+                Expanded(  
+                  child: TextFormField(  
+                    controller:  todoController.notesController ,  
+                    decoration: InputDecoration(  
+                      hintText: 'Write your notes',  
+                      border: OutlineInputBorder(),  
+                    ),  
+                  ),  
+                ),  
+                TextButton(onPressed: () {  
+                  setState(() {  
+                    todoController.addTodo();  
+                    todoController.notesController.clear();  
+                  });  
+                }, child: Text('Add +')),  
+              ],  
+            ),  
+          ),  
+  
+          Consumer<TodoController>(  
+            builder: (BuildContext context, TodoController value, _) {  
+  
+              if(value.todos.isEmpty){  
+                return Center(  
+                  child: Text('Your todos are empty , please add a new one! '),  
+                );  
+              }  
+              return ListView.builder(  
+                physics: NeverScrollableScrollPhysics(),  
+                itemCount: value.todos.length,  
+                shrinkWrap: true,  
+                itemBuilder: (context, index) {  
+                  final item = value.todos[index];  
+                  return Dismissible(  
+                    key: Key(item.id.toString()),  
+                    onDismissed: (_){  
+                      todoController.removeTodo(item.id);  
+                    },  
+                    background: Container(  
+                      padding: EdgeInsets.all(16),  
+                      alignment: Alignment.centerRight,  
+                      color: Colors.red,  
+                      child: Icon(Icons.delete_forever),  
+                    ),  
+                    child: ListTile(  
+                      title: Text(item.title),  
+                      trailing: Checkbox(value: item.isChecked, onChanged: (val) {  
+                        todoController.toggleCompleted(item.id);  
+                      }),  
+                    ),  
+                  );  
+                },  
+              );  
+            },  
+          ),  
+        ],  
+      ),  
+    );  
+  }  
+}
+```
+
+*todo_Controller*
+```dart
+  
+import 'package:flutter/widgets.dart';  
+import 'package:fourth_session/models/todo_item.dart';  
+  
+// Provider  
+class TodoController extends ChangeNotifier{  
+  
+  final List<TodoItem> _todos = [];  
+  final TextEditingController notesController = TextEditingController();  
+  
+  List<TodoItem> get todos => _todos;  
+  // Add  
+  void addTodo(){  
+    final title = notesController.text;  
+    if(title.trim().isEmpty)return;  
+      
+    final nowTime = DateTime.now().toUtc().microsecondsSinceEpoch;  
+    final newTodo = TodoItem(id: nowTime,title: title );  
+  
+    _todos.add(newTodo);  
+  
+    // SetState for Provider  
+    notifyListeners();  
+  }  
+  // Remove  
+  void removeTodo(int id){  
+    _todos.removeWhere((item)=> item.id  == id );  
+    notifyListeners();  
+  }  
+  // Mark as Completed  
+  void toggleCompleted(int id  ){  
+    final item = _todos.firstWhere((item)=>item.id == id);  
+    item.isChecked = !item.isChecked;  
+    notifyListeners();  
+  }  
+  // Filtration  
+  
+}
+```
+
+*todo_item*
+```dart
+class TodoItem{  
+  final String title ;  
+   bool isChecked;  
+   final int id ;  
+  
+  TodoItem({required this.id, required this.title,  this.isChecked = false});  
+  
+  @override  
+  String toString() {  
+    return 'Todo title is : $title' ;  
+  }  
+}
+```
+
+
+![[Zoom_exVcIAXjVV.png]]
+
+![[Zoom_gmIiRXLdVh.png]]
+
+
+
+## Bloc (Business Logic)
+**بتجبرك انك تطبق  Seperation of Concern اللي هو فصل ال UI  عن اللوجك**
+
+###  Why Bloc?
+
+![[chrome_UI3tMeHV0t.png]]
+![[chrome_nAwq7J3Q3Z.png]]
+
+
+
+

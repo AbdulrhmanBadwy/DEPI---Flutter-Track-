@@ -30,7 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Column(
-        spacing: 10,
+
+        spacing: 7,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Search Bar
@@ -132,32 +133,30 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          isGrid
-              ? Expanded(
-                  child: GridView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                      childAspectRatio: .70,
-                    ),
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      final item = items[index];
-                      return BuilderItemGridView(itemGrid: item);
-                    },
+          Expanded(
+            child: isGrid
+                ? GridView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: .70,
                   ),
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    final item = items[index];
+                    return BuilderItemGridView(itemGrid: item);
+                  },
                 )
-              : Expanded(
-                  child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      final item = items[index];
-                      return BuilderItemListView(itemModel: item);
-                    },
-                  ),
+                : ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    final item = items[index];
+                    return BuilderItemListView(itemModel: item);
+                  },
                 ),
+          ),
         ],
       ),
     );
