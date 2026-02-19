@@ -1,7 +1,6 @@
-import 'package:assignment_9/controllers/todo_controller.dart';
+import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/task_widget.dart';
 
 class Completed extends StatelessWidget {
@@ -9,18 +8,19 @@ class Completed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<TodoController>();
-    return  Column(
+    return Column(
       children: [
+        // Header
         Container(
-          margin: EdgeInsets.only(top: 84 , bottom: 97),
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          margin: const EdgeInsets.only(top: 84, bottom: 97),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Title + Date
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text(
                     'Completed',
                     style: TextStyle(
@@ -31,55 +31,53 @@ class Completed extends StatelessWidget {
                     ),
                   ),
                   Text(
-                      'date'
+                    'date'
                   ),
                 ],
-              ) ,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: FloatingActionButton(
                   enableFeedback: true,
-                  backgroundColor: Color(0xFF008080),
+                  backgroundColor: const Color(0xFF008080),
                   foregroundColor: Colors.white,
-                  focusColor: Colors.white,
-                  onPressed: (){
-
+                  onPressed: () {
                   },
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)
-
+                    borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Icon(Icons.done_outline_outlined , size: 40,),
-
+                  child: const Icon(
+                    Icons.done_outline_outlined,
+                    size: 40,
+                  ),
                 ),
               ),
             ],
           ),
         ),
+
+        // Body: Completed Tasks
         Expanded(
-          child: Consumer<TodoController>(
-            builder: (BuildContext context, TodoController value, _) {
-              if(value.todos.isEmpty){
-                return Center(
-                  child: Text('No Tasks Found '),
+          child: BlocBuilder<TodoCubit, TodoState>(
+            builder: (context, state) {
+              final completedTasks =
+              state.todos.where((task) => task.isChecked).toList();
+
+              if (completedTasks.isEmpty) {
+                return const Center(
+                  child: Text('No Completed Tasks'),
                 );
               }
               return ListView.builder(
-                itemCount: value.todos.length,
-                itemBuilder: (context,index){
-                  if(provider.isChecked(index)){
-                    final task = provider.todos[index];
-                    return TaskWidget(taskModel: task);
-                  }
-                  return Center(
-                  );
+                itemCount: completedTasks.length,
+                itemBuilder: (context, index) {
+                  final task = completedTasks[index];
+                  return TaskWidget(taskModel: task);
                 },
               );
             },
-
           ),
         ),
-
       ],
     );
   }

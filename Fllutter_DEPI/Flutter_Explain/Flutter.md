@@ -1215,6 +1215,13 @@ class RouterGenerator {
 ![[Pasted image 20260213225531.png]]
 
 *Consumer Widget  دي وظيفتها انها تخلي الحته اللي هي بتراب عليها بس هي اللي يتم عمل ليها ريبيلد من اول وجديد بدل ما الإسكرين كلها يتعمل ليها ريبلد *
+
+![[Pasted image 20260219132943.png]]
+![[Pasted image 20260219133755.png]]
+
+![[Pasted image 20260219135214.png]]
+
+
 ![[Pasted image 20260213230818.png]]
 
 **Summary for all We do**
@@ -1298,7 +1305,7 @@ class _HomeScreenState extends State<HomeScreen> {
   
               if(value.todos.isEmpty){  
                 return Center(  
-                  child: Text('Your todos are empty , please add a new one! '),  
+                  child: Text('Your todos are empty , please add a new one!'),  
                 );  
               }  
               return ListView.builder(  
@@ -1402,13 +1409,31 @@ class TodoItem{
 
 
 ## Bloc (Business Logic)
-**بتجبرك انك تطبق  Seperation of Concern اللي هو فصل ال UI  عن اللوجك**
+**بتجبرك انك تطبق  Separation of Concern اللي هو فصل ال UI  عن اللوجك**
 
 ###  Why Bloc?
 
 ![[chrome_UI3tMeHV0t.png]]
+
+![[Pasted image 20260219142049.png]]
 ![[chrome_nAwq7J3Q3Z.png]]
 
+**نفس الخمس خطوات اللي في ال  Provider  هما نفس الترتيب بس هنغير المسميات بس**
+![[Pasted image 20260219133606.png]]
 
+### Steps to Make Cubit 
 
+*خطوات إنشاء الملفات*
+![[Pasted image 20260219151200.png]]
+
+`2- Difference Between todo_cubit Vs todo_sate`
+
+`todo_cubit` *logic * *يعني كل اكشن انت محتاج تعمله زي انك تضيف انك تحذف انك تعمل فيلتر اي فنكشن انت عاوزها تكتبها هنا *
+![[Pasted image 20260219152615.png]]
+`todo_state` *Ploymorphism*  *ماشي بالمبدأ دا*
+*انت بتروح تحدد الحالات اللي عندك هنا انت عندك ياإما بيحمل الداتا يأما خلص تحميل يإما فشل في التحميل علي حسب كل حاله انت هتعرض حاجات مختلفة للمستخدم*
+**مستحيل التلت حالات يحصلو مع بعض يا دا يا دا يا دا واحده منهم بس اللي هتحصل**
+![[Pasted image 20260219152239.png]]
+
+![[Pasted image 20260219152709.png]]
 

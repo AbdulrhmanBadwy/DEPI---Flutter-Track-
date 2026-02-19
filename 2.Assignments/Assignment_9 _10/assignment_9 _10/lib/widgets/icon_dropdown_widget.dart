@@ -1,18 +1,18 @@
-import 'package:assignment_9/controllers/todo_controller.dart';
+import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:flutter/material.dart';
 
 class IconDropdownWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final Color color;
-  final TodoController provider;
+  final TodoCubit bloc;
   final BuildContext context;
   const IconDropdownWidget({
     super.key,
     required this.icon,
     required this.title,
     required this.color ,
-    required this.provider,
+    required this.bloc,
     required this.context,
   });
 
@@ -25,7 +25,7 @@ class IconDropdownWidget extends StatelessWidget {
       ),
       title: Text(title , style:  TextStyle(color:  color),),
       onTap: (){
-        provider.categoryController.text = title;
+        bloc.categoryController.text = title;
         Navigator.pop(context);
       },
     );

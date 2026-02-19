@@ -1,28 +1,28 @@
-import 'package:assignment_9/controllers/todo_controller.dart';
+import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:assignment_9/screens/add_task.dart';
 import 'package:assignment_9/widgets/task_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Tasks extends StatelessWidget {
   const Tasks({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<TodoController>();
     return Column(
       children: [
-        // Task and its icon
+        // Header
         Container(
-          margin: EdgeInsets.only(top: 84 , bottom: 97),
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          margin: const EdgeInsets.only(top: 84, bottom: 97),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Title + Date
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Tasks',
                     style: TextStyle(
                       fontFamily: 'bardo',
@@ -31,11 +31,10 @@ class Tasks extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                      provider.dateOnly,
-                  ),
+                 Text('date')
                 ],
-              ) ,
+              ),
+              // Add Task Button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: FloatingActionButton(
@@ -43,40 +42,46 @@ class Tasks extends StatelessWidget {
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   focusColor: Colors.white,
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return AddTask();
-                    }));
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return AddTask();
+                      }),
+                    );
                   },
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)
-
+                    borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Icon(Icons.add , size: 40,),
-
+                  child: const Icon(Icons.add, size: 40),
                 ),
               ),
             ],
           ),
         ),
+
+        // Body: List of tasks
         Expanded(
-          child: Consumer <TodoController>(
-            builder: (BuildContext context, TodoController value, _) {
-              if(value.todos.isEmpty){
-                return Center(
-                  child: Text('No Tasks Found , Please Click to Create one '),
+          child: BlocBuilder<TodoCubit, TodoState>(
+            builder: (context, state) {
+              if (state.todos.isEmpty) {
+                return const Center(
+                  child: Text(
+                    'No Tasks Found, Please Click To Create One',
+                    textAlign: TextAlign.center,
+                  ),
                 );
               }
+
               return ListView.builder(
-                itemCount: value.todos.length,
-                itemBuilder: (context,index){
-                  final task = provider.todos[index];
+                itemCount: state.todos.length,
+                itemBuilder: (context, index) {
+                  final task = state.todos[index];
                   return TaskWidget(taskModel: task);
                 },
               );
             },
-
-            ),
+          ),
         ),
       ],
     );

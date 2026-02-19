@@ -1,6 +1,10 @@
 import 'package:assignment_9/models/task_model.dart';
 import 'package:flutter/widgets.dart';
 
+import '../screens/completed.dart';
+import '../screens/pending.dart';
+import '../screens/tasks.dart';
+
 class TodoController extends ChangeNotifier {
   int _currentIndex = 0 ;
   int get currentIndex => _currentIndex;
@@ -16,6 +20,11 @@ class TodoController extends ChangeNotifier {
 
   final List<TaskModel> _todos = [];
   List <TaskModel>get todos => _todos;
+  List<Widget> body  = [
+    Tasks(),
+    Pending(),
+    Completed(),
+  ];
   final TextEditingController taskController = TextEditingController();
   final TextEditingController categoryController = TextEditingController();
   final TextEditingController dateController = TextEditingController();

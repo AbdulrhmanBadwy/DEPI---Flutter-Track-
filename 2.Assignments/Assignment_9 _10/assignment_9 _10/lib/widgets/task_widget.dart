@@ -1,7 +1,7 @@
-import 'package:assignment_9/controllers/todo_controller.dart';
+import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:assignment_9/models/task_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TaskWidget extends StatefulWidget {
   final TaskModel taskModel;
@@ -14,28 +14,26 @@ class TaskWidget extends StatefulWidget {
 class _TaskWidgetState extends State<TaskWidget> {
   @override
   Widget build(BuildContext context) {
-  final provider = context.read<TodoController>();
+  final bloc = context.read<TodoCubit>();
     return Dismissible(
       key: Key(widget.taskModel.id.toString()),
       onDismissed: (_){
-        provider.removeTodo(widget.taskModel.id);
+        bloc.removeTodo(widget.taskModel.id);
       },
       background: Container(
         padding: EdgeInsets.all(16),
         alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
         color: Colors.red,
-        ),
         child: Icon(Icons.delete_forever),
       ),
       child: Container(
-        margin: EdgeInsets.only(bottom: 15),
+        margin: EdgeInsets.only(bottom: 20),
         child: Row(
           children: [
             Transform.scale(
               scale: 1.4,
               child: Checkbox(value: widget.taskModel.isChecked , onChanged: (value){
-                provider.toggleCompleted(widget.taskModel.id);
+                bloc.toggleCompleted(widget.taskModel.id);
               },
                 checkColor: Colors.white,
                 activeColor: Color(0xFF008080),

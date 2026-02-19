@@ -1,4 +1,4 @@
-import 'package:assignment_9/controllers/todo_controller.dart';
+import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:assignment_9/widgets/icon_dropdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +8,7 @@ class AddTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<TodoController>();
+    final bloc = context.read<TodoCubit>();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -18,7 +18,7 @@ class AddTask extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 25),
-                  alignment: AlignmentDirectional.topStart,
+                  alignment: Alignment.topLeft,
                   child: TextButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -54,7 +54,7 @@ class AddTask extends StatelessWidget {
                 children: [
                   // task
                   TextFormField(
-                    controller: provider.taskController,
+                    controller: bloc.taskController,
                     decoration: InputDecoration(
                       hintStyle: TextStyle(color: Colors.grey),
                       hintText: 'Name your task',
@@ -63,10 +63,10 @@ class AddTask extends StatelessWidget {
                   ),
                   // Category
                   TextFormField(
-                    controller: provider.categoryController,
+                    controller: bloc.categoryController,
                     readOnly: true,
                     onTap: (){
-                      _showCategoryPicker(context, provider);
+                      _showCategoryPicker(context, bloc);
                     },
                     decoration: InputDecoration(
                       hintStyle: TextStyle(color: Colors.grey),
@@ -77,7 +77,7 @@ class AddTask extends StatelessWidget {
                   ),
                   //date
                   TextFormField(
-                    controller: provider.dateController,
+                    controller: bloc.dateController,
                     readOnly: true,
                     onTap: () async {
                       DateTime? pickedDate = await showDatePicker(
@@ -88,7 +88,7 @@ class AddTask extends StatelessWidget {
                       );
 
                       if (pickedDate != null) {
-                        provider.dateController.text =
+                        bloc.dateController.text =
                         "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";
                       }
                     },
@@ -119,10 +119,10 @@ class AddTask extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    provider.addTodo();
-                    provider.dateController.clear();
-                    provider.taskController.clear();
-                    provider.categoryController.clear();
+                    bloc.addTodo();
+                    bloc.dateController.clear();
+                    bloc.taskController.clear();
+                    bloc.categoryController.clear();
                     Navigator.pop(context);
                   },
                   child: Text(
@@ -142,7 +142,7 @@ class AddTask extends StatelessWidget {
     );
   }
 
-  void _showCategoryPicker(BuildContext context, TodoController provider) {
+  void _showCategoryPicker(BuildContext context, TodoCubit bloc) {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
@@ -158,28 +158,28 @@ class AddTask extends StatelessWidget {
                 icon: Icons.person,
                 title: 'Personal',
                 color: Colors.teal,
-                provider: provider,
+                bloc: bloc,
                 context: context,
               ),
               IconDropdownWidget(
                 icon: Icons.work,
                 title: 'Work',
                 color: Colors.blue,
-                provider: provider,
+                bloc: bloc,
                 context: context,
               ),
               IconDropdownWidget(
                 icon: Icons.monitor_heart_outlined,
                 title: 'Health',
                 color: Colors.red,
-                provider: provider,
+                bloc: bloc,
                 context: context,
               ),
               IconDropdownWidget(
                 icon: Icons.home,
                 title: 'Family',
                 color: Colors.grey,
-                provider: provider,
+                bloc: bloc,
                 context: context,
               ),
 
@@ -187,7 +187,7 @@ class AddTask extends StatelessWidget {
                 icon: Icons.school_outlined,
                 title: 'Learning',
                 color: Colors.orange,
-                provider: provider,
+                bloc: bloc,
                 context: context,
               ),
 

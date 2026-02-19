@@ -20,6 +20,18 @@
               "icon": "lucide-file",
               "title": "Flutter"
             }
+          },
+          {
+            "id": "b623456bd39387f3",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-02-19 15.09.23.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-02-19 15.09.23.excalidraw"
+            }
           }
         ]
       }
@@ -187,17 +199,19 @@
   },
   "active": "38a818362c459eb4",
   "lastOpenFiles": [
-    "Flutter_Explain/Pasted image 20260216163520.png",
-    "Flutter_Explain/Pasted image 20260216164134.png",
-    "Flutter_Explain/Pasted image 20260216162024.png",
+    "Pasted image 20260219152709.png",
+    "Pasted image 20260219152615.png",
+    "Pasted image 20260219152239.png",
+    "Pasted image 20260219152116.png",
+    "Pasted image 20260219151200.png",
+    "Excalidraw/Drawing 2026-02-19 15.09.23.excalidraw.md",
+    "Pasted Image 20260219150958_169.png",
+    "Pasted Image 20260219150941_139.png",
+    "Pasted Image 20260219150926_771.png",
     "Flutter_Explain/Flutter.md",
-    "Flutter_Explain/Pasted image 20260216172340.png",
-    "Flutter_Explain/Pasted image 20260216164013.png",
-    "Flutter_Explain/studio64_cWalHfz76c.png",
-    "Flutter_Explain/studio64_JqkEW2lrPn.png",
-    "Flutter_Explain/studio64_DRBZjzAA7q.png",
-    "Flutter_Explain/studio64_KxmEeRrPHa.png",
-    "Flutter_Explain/chrome_nAwq7J3Q3Z.png",
+    "Pasted image 20260219142049.png",
+    "Pasted image 20260219135214.png",
+    "Pasted image 20260219133755.png",
     "Tasks/Flutter Tasks.md",
     "Excalidraw/Drawing 2026-02-01 12.51.30.excalidraw.md",
     "Excalidraw/Drawing 2026-02-01 16.18.32.excalidraw.md",
