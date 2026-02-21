@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_devlivery_app/models/view_item_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_devlivery_app/blocs/food_cubit/food_cubit.dart';
 import 'package:food_devlivery_app/models/slider_item_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:food_devlivery_app/widgets/builder_item_list_view.dart';
@@ -15,7 +16,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isGrid = false;
+  @override
+  void initState() {
+    super.initState();
+    context.read<FoodCubit>().loadData();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,100 +67,107 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           // Featured Items
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              spacing: 17,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Featured Items', style: TextStyle(fontSize: 20)),
-                Container(
-                  width: 300,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(252, 236, 237, 1),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: isGrid? Alignment.centerRight:Alignment.centerLeft,
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: 150,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
+          BlocBuilder<FoodCubit, FoodState>(
+            builder: (context, state) {
+              return Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  spacing: 17,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Featured Items', style: TextStyle(fontSize: 20)),
+                    Container(
+                      width: 300,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(252, 236, 237, 1),
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Stack(
                         children: [
-                          InkWell(
-                            onTap: (){
-                                setState(() {
-                                  isGrid = false;
-                                });
-                            },
-                            child: Center(
-                              child: Text(
-                                  'List View',
-                                style: TextStyle(
-                                  color: isGrid?Colors.black:Colors.white,
-                                ),
+                          Align(
+                            alignment: state.isGrid
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: 150,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(30),
                               ),
                             ),
                           ),
-                          InkWell(
-                            child: Center(
-                              child: Text(
-                                'Grid View',
-                                style: TextStyle(
-                                    color: isGrid?Colors.white:Colors.black,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                 context.read<FoodCubit>().switchPreview(state.isGrid);
+                                },
+                                child: Center(
+                                  child: Text(
+                                    'List View',
+                                    style: TextStyle(
+                                      color: state.isGrid ? Colors.black : Colors
+                                          .white,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                            onTap: (){
-                              setState(() {
-                                isGrid=true;
-
-                              });
-                            },
+                              InkWell(
+                                child: Center(
+                                  child: Text(
+                                    'Grid View',
+                                    style: TextStyle(
+                                      color: state.isGrid ? Colors.white : Colors
+                                          .black,
+                                    ),
+                                  ),
+                                ),
+                                onTap: () {
+                                  context.read<FoodCubit>().switchPreview(state.isGrid);
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           ),
-          Expanded(
-            child: isGrid
+          BlocBuilder<FoodCubit, FoodState>(
+            builder: (context, state) {
+              return Expanded(
+            child: state.isGrid
                 ? GridView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 16,
-                    crossAxisSpacing: 16,
-                    childAspectRatio: .70,
-                  ),
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    final item = items[index];
-                    return BuilderItemGridView(itemGrid: item);
-                  },
-                )
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: .70,
+              ),
+              itemCount: state.listOfItems.length,
+              itemBuilder: (context, index) {
+                final item = state.listOfItems[index];
+                return BuilderItemGridView(itemGrid: item);
+              },
+            )
                 : ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    final item = items[index];
-                    return BuilderItemListView(itemModel: item);
-                  },
-                ),
+              itemCount: state.listOfItems.length,
+              itemBuilder: (context, index) {
+                final item = state.listOfItems[index];
+                return BuilderItemListView(itemModel: item);
+              },
+            ),
+              );
+            },
           ),
         ],
       ),

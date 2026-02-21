@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class BuilderCartSummary extends StatelessWidget {
   final String title;
   final double value ;
-  bool isBold = false;
-   BuilderCartSummary({super.key , required this.title,required this.value , required this.isBold});
+  final bool isBold ;
+   const BuilderCartSummary({super.key , required this.title,required this.value ,  this.isBold = false});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,6 @@ class BuilderCartSummary extends StatelessWidget {
           ),
         ),
       ],
-    ); ;
+    );
   }
 }

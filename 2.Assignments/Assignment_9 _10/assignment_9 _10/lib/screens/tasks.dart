@@ -46,7 +46,10 @@ class Tasks extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) {
-                        return AddTask();
+                        return BlocProvider.value(
+                          value: context.read<TodoCubit>(),
+                          child: AddTask(),
+                        );
                       }),
                     );
                   },

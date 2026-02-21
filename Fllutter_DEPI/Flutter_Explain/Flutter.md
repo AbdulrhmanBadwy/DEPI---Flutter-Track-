@@ -1427,6 +1427,8 @@ class TodoItem{
 ![[Pasted image 20260219151200.png]]
 
 `2- Difference Between todo_cubit Vs todo_sate`
+**الملفين بتعاملو مع بعض بمبدأ ال  part , part of **  *يعني ال  Cubit  بيقول انا جزء من الكود بتاع الكود اللي موجود في ال  state  وال  state  بتقول  انا جزء من الكود بتاع ال  cubit دا بيقول معلومة والتاني بيأكدها*
+![[Pasted image 20260221074514.png]]
 
 `todo_cubit` *logic * *يعني كل اكشن انت محتاج تعمله زي انك تضيف انك تحذف انك تعمل فيلتر اي فنكشن انت عاوزها تكتبها هنا *
 ![[Pasted image 20260219152615.png]]
@@ -1436,4 +1438,39 @@ class TodoItem{
 ![[Pasted image 20260219152239.png]]
 
 ![[Pasted image 20260219152709.png]]
+
+
+### 
+![[Pasted image 20260221072547.png]]
+
+
+**Convert ECommerce App From SetState to Bloc**
+
+*logic*
+![[Pasted image 20260221072952.png]]
+
+![[Pasted image 20260221073238.png]]
+
+#### StatefulWidget Life Cycle 
+![[Pasted image 20260221082028.png]]
+##### create State *Create a state and may be change in the future*
+##### Init State *your class is created and it's context is defined in the widget tree* Logic for once 
+##### didChange
+##### didUpdate Widget
+
+##### Build 
+##### dispose *صفحة واتقفلت لما الصفحة تقفل فضي الداتا بتاعتي افضي الميموري*
+
+
+
+### Bloc Observable 
+*هو كلاس محفوظ بتعمله كوبي بيست يعني بس بيخليك فاااهم ايه اللي بيحصل لو حصل ايرور بتعرف ايه و حصل ليه ومش عاارف اهي لما حاجة تتعمل جديده بيطلعلك وهكذا بقي*
+
+
+### What is the difference between Bloc & Cubit 
+
+
+
+# Database 
+
 

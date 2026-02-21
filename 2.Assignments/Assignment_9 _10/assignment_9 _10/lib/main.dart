@@ -13,12 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_)=> TodoCubit() ,
-
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(
+        create: (_) => TodoCubit(),
+        child: HomeScreen(),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:third_session/cubits/products_cubit/products_cubit.dart';
 import 'package:third_session/product_item_mode.dart';
-
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -12,9 +13,15 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ProductsCubit>().loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // Don't write any logic code here!
     return Column(
       spacing: 12,
       children: [
@@ -39,28 +46,60 @@ class _ProductScreenState extends State<ProductScreen> {
           margin: EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             spacing: 12,
-            children: List<Widget>.generate(ProductScreen.titles.length, (index) {
-
+            children: List<Widget>.generate(ProductScreen.titles.length, (
+              index,
+            ) {
               return _buildFilterWidget(ProductScreen.titles[index]);
             }),
-
           ),
         ),
 
         Expanded(
-          child: GridView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            // scrollDirection: Axis.horizontal,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 20,
-              childAspectRatio: 0.82,
-            ),
-            itemCount: ProductItemModel.listOfItems.length,
-            itemBuilder: (context, index) {
-              final item = ProductItemModel.listOfItems[index];
-              return _buildProductItem(item);
+          child: BlocListener<ProductsCubit, ProductsState>(
+            listener: (context, state) {
+              if (state.isItemAddedToFavourite) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Item is added to favourite'),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              }
+
+              if (state.isItemRemovedToFavourite) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Item is removed to favourite'),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
+
             },
+            child: BlocBuilder<ProductsCubit, ProductsState>(
+              buildWhen: (prev, current) {
+                return prev.listOfProducts != current.listOfProducts;
+              },
+              builder: (context, state) {
+                if (state.listOfProducts.isNotEmpty) {
+                  return GridView.builder(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    // scrollDirection: Axis.horizontal,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 0.82,
+                    ),
+                    itemCount: state.listOfProducts.length,
+                    itemBuilder: (context, index) {
+                      final item = state.listOfProducts[index];
+                      return _buildProductItem(item);
+                    },
+                  );
+                }
+                return Center(child: Text('There is no Items in the list'));
+              },
+            ),
           ),
         ),
       ],
@@ -91,15 +130,20 @@ class _ProductScreenState extends State<ProductScreen> {
               Text('\$${item.price}'),
             ],
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                item.isFavourite = !item.isFavourite;
-              });
+          BlocBuilder<ProductsCubit, ProductsState>(
+            buildWhen: (previousState, currentState) {
+              return previousState.favourites != currentState.favourites;
             },
-            icon: item.isFavourite
-                ? Icon(Icons.favorite, color: Colors.red)
-                : Icon(Icons.favorite_outline_rounded),
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () {
+                  context.read<ProductsCubit>().toggleFavourite(item.id);
+                },
+                icon: state.favourites.contains(item.id)
+                    ? Icon(Icons.favorite, color: Colors.red)
+                    : Icon(Icons.favorite_outline_rounded),
+              );
+            },
           ),
         ],
       ),

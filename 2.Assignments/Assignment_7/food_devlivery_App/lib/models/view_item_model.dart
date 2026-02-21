@@ -1,4 +1,5 @@
 class ViewItemModel {
+  int? id ;
   String? image;
   String? name;
   String? price;
@@ -10,6 +11,7 @@ class ViewItemModel {
   bool isFavourite = false;
 
   ViewItemModel({
+    this.id,
     this.image,
     this.name,
     this.price,
@@ -20,10 +22,9 @@ class ViewItemModel {
     this.ingredients,
     required this.isFavourite,
   });
-}
-
-List<ViewItemModel> items = [
+static List<ViewItemModel> items = [
   ViewItemModel(
+    id:1,
     image: 'assets/images/burger_food_details.jpg',
     name: 'Special Beef Burger',
     price: '\$12.5',
@@ -35,15 +36,18 @@ List<ViewItemModel> items = [
     isFavourite: true,
   ),
   ViewItemModel(
+    id:2,
     image: 'assets/images/pizza_food_details.jpg',
     name: 'Unique Pizza Heart',
     price: '\$40',
     reviews: 4.8,
     description:
-        'Pizza Heart is not for People that have weak Heart it is very Spicy',
+    'Pizza Heart is not for People that have weak Heart it is very Spicy',
     time: 35,
     kCalory: 700,
     ingredients: ['Beef Patty', 'Cheddar', 'Moralizer', 'Tomato'],
     isFavourite: false,
   ),
 ];
+}
+

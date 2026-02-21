@@ -8,14 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  static final List<Widget> screens = [
-    Tasks(),
-    Pending(),
-    Completed(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      Tasks(),
+      Pending(),
+      Completed(),
+    ];
     return BlocBuilder<TodoCubit, TodoState>(
       builder: (context, state) {
         return Scaffold(

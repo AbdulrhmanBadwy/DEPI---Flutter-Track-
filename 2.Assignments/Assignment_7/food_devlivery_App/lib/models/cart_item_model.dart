@@ -13,9 +13,8 @@ class CartItemModel {
     required this.counter,
     required this.price,
   });
-}
 
-List<CartItemModel> cartItems = [
+static List<CartItemModel> cartItems = [
   CartItemModel(
     name: 'Classic Burger',
     size: 'Large',
@@ -33,3 +32,4 @@ List<CartItemModel> cartItems = [
     price: 40
   ),
 ];
+}
