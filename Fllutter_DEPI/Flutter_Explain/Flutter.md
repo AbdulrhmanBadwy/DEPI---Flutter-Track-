@@ -1466,11 +1466,66 @@ class TodoItem{
 ### Bloc Observable 
 *هو كلاس محفوظ بتعمله كوبي بيست يعني بس بيخليك فاااهم ايه اللي بيحصل لو حصل ايرور بتعرف ايه و حصل ليه ومش عاارف اهي لما حاجة تتعمل جديده بيطلعلك وهكذا بقي*
 
+```dart
+import 'dart:developer';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class AppBlocObserver extends BlocObserver {
+
+  @override
+  void onCreate(BlocBase bloc) {
+    super.onCreate(bloc);
+    log('onCreate -- ${bloc.runtimeType}');
+  }
+
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    super.onEvent(bloc, event);
+    log('onEvent -- ${bloc.runtimeType}, $event');
+  }
+
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    super.onChange(bloc, change);
+    log('onChange -- ${bloc.runtimeType}, ${change}');
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    log('onTransition -- ${bloc.runtimeType}, $transition');
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    log('onError -- ${bloc.runtimeType}, $error');
+    log('onErrorStackTrace -- ${bloc.runtimeType}, $stackTrace');
+    super.onError(bloc, error, stackTrace);
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    super.onClose(bloc);
+    log('onClose -- ${bloc.runtimeType}');
+  }
+}
+```
+![[Pasted image 20260222214555.png]]
+
+*عشان تستخدمه بستخدمه كدا وبرضك بال  blocBuilder  وهكذا بقي*
+![[Pasted image 20260222222904.png]]
 
 ### What is the difference between Bloc & Cubit 
 
 
 
 # Database 
+![[Pasted image 20260223080107.png]]
+
+## Local Storage 
+![[Pasted image 20260223075531.png]]
+
+
 
 

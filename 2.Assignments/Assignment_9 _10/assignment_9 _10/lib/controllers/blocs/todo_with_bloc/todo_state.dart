@@ -1,18 +1,15 @@
-
-// Polymorphism
-
-
 part of 'todo_bloc.dart';
 
 @immutable
 sealed class TodoState {}
 
-// States [ Initial Loading , Success , Success , failed ]
 final class TodoInitial extends TodoState {}
+
 final class TodoLoading extends TodoState {}
 final class TodoSuccess extends TodoState {
-  final List<TodoItem> todos;
+  final List<TaskModel> todos;
+  final int currentIndex;
 
-  TodoSuccess({required this.todos});
+  TodoSuccess({required this.todos, this.currentIndex = 0});
 }
 final class TodoFailed extends TodoState {}

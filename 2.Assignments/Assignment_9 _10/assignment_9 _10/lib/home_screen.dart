@@ -1,9 +1,10 @@
-import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:assignment_9/screens/completed.dart';
 import 'package:assignment_9/screens/pending.dart';
 import 'package:assignment_9/screens/tasks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'controllers/blocs/todo_with_bloc/todo_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,31 +17,20 @@ class HomeScreen extends StatelessWidget {
       Pending(),
       Completed(),
     ];
-    return BlocBuilder<TodoCubit, TodoState>(
+    return BlocBuilder<TodoBloc, TodoState>(
       builder: (context, state) {
+        final currentIndex = state is TodoSuccess ? state.currentIndex : 0;
         return Scaffold(
-          body: screens[state.currentIndex],
+          body: screens[currentIndex],
           bottomNavigationBar: BottomNavigationBar(
-            selectedLabelStyle: TextStyle(
-              color: Colors.black
-            ),
-            currentIndex: state.currentIndex,
+            currentIndex: currentIndex,
             onTap: (index) {
-              context.read<TodoCubit>().changeScreenIndex(index);
+              context.read<TodoBloc>().add(ChangeIndexEvent(index));
             },
             items: const [
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: 'All',
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: 'Pending',
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: 'Completed',
-              ),
+              BottomNavigationBarItem(icon: SizedBox.shrink(), label: 'All'),
+              BottomNavigationBarItem(icon: SizedBox.shrink(), label: 'Pending'),
+              BottomNavigationBarItem(icon: SizedBox.shrink(), label: 'Completed'),
             ],
           ),
         );

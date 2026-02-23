@@ -1,7 +1,7 @@
-import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../controllers/blocs/todo_with_bloc/todo_bloc.dart';
 import '../widgets/task_widget.dart';
 
 class Pending extends StatelessWidget {
@@ -59,23 +59,21 @@ class Pending extends StatelessWidget {
 
         // Body: Uncompleted Tasks
         Expanded(
-          child: BlocBuilder<TodoCubit, TodoState>(
+          child: BlocBuilder<TodoBloc, TodoState>(
             builder: (context, state) {
-              final unCompletedTasks =
-              state.todos.where((task) => !task.isChecked).toList();
-
-              if (unCompletedTasks.isEmpty) {
-                return const Center(
-                  child: Text('No Pending Tasks'),
+              if (state is TodoSuccess) {
+                final unCompletedTasks =
+                state.todos.where((task) => !task.isChecked).toList();
+                if (unCompletedTasks.isEmpty) {
+                  return const Center(child: Text('No Pending Tasks'));
+                }
+                return ListView.builder(
+                  itemCount: unCompletedTasks.length,
+                  itemBuilder: (context, index) =>
+                      TaskWidget(taskModel: unCompletedTasks[index]),
                 );
               }
-              return ListView.builder(
-                itemCount: unCompletedTasks.length,
-                itemBuilder: (context, index) {
-                  final task = unCompletedTasks[index];
-                  return TaskWidget(taskModel: task);
-                },
-              );
+              return const Center(child: Text('No Pending Tasks'));
             },
           ),
         ),

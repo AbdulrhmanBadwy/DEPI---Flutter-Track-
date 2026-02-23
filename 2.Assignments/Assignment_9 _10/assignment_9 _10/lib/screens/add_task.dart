@@ -1,4 +1,4 @@
-import 'package:assignment_9/controllers/block/todo_cubit.dart';
+import 'package:assignment_9/controllers/blocs/todo_with_bloc/todo_bloc.dart';
 import 'package:assignment_9/widgets/icon_dropdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +8,8 @@ class AddTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<TodoCubit>();
+    final bloc = context.read<TodoBloc>();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -119,7 +120,15 @@ class AddTask extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    bloc.addTodo();
+                    final task = bloc.taskController.text;
+                    final category = bloc.categoryController.text;
+                    final date = bloc.dateController.text;
+
+                    bloc.add(AddTodoEvent(
+                      task: task,
+                      category: category,
+                      date: date,
+                    ));
                     bloc.dateController.clear();
                     bloc.taskController.clear();
                     bloc.categoryController.clear();
@@ -142,7 +151,7 @@ class AddTask extends StatelessWidget {
     );
   }
 
-  void _showCategoryPicker(BuildContext context, TodoCubit bloc) {
+  void _showCategoryPicker(BuildContext context, TodoBloc bloc) {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(

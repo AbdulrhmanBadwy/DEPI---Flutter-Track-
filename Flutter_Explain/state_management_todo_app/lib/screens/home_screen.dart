@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fourth_session/blocs/todo_cubit/todo_cubit.dart';
+
+import '../blocs/todo_bloc/todo_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,9 +11,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+@override
+  void initState() {
+    super.initState();
+    context.read<TodoBloc>().add(LoadTodosEvent());
+
+  }
   @override
   Widget build(BuildContext context) {
-    final todoCubit = context.read<TodoCubit>();
+    final  todoBloc= context.read<TodoBloc>();
+    final TextEditingController notesController = TextEditingController();
     return Scaffold(
       appBar: AppBar(title: Text('Todo App'), centerTitle: true),
       body: ListView(
@@ -24,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: TextFormField(
-                    controller:  todoCubit.notesController ,
+                    controller:  notesController ,
                     decoration: InputDecoration(
                       hintText: 'Write your notes',
                       border: OutlineInputBorder(),
@@ -32,13 +40,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 TextButton(onPressed: () {
-                  todoCubit.addTodo();
-                  todoCubit.notesController.clear();
+                  todoBloc.add(AddTodoEvent(notesController.text));
+                  notesController.clear();
                 }, child: Text('Add +')),
               ],
             ),
           ),
-         BlocBuilder<TodoCubit,TodoState>
+         BlocBuilder<TodoBloc,TodoState>
            (builder: (BuildContext context , TodoState state){
              if(state is TodoInitial){
                return Center(
@@ -57,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      key: Key(item.id.toString()),
                      onDismissed: (_){
                        // todoController.removeTodo(item.id);
-                       todoCubit.removeTodo(item.id);
+                       todoBloc.add(RemoveTodoEvent(item.id));
                      },
                      background: Container(
                        padding: EdgeInsets.all(16),
@@ -69,19 +77,14 @@ class _HomeScreenState extends State<HomeScreen> {
                        title: Text(item.title),
                        trailing: Checkbox(value: item.isChecked, onChanged: (val) {
                          // todoController.toggleCompleted(item.id);
-                         todoCubit.toggleCompleted(item.id);
+                         todoBloc.add(ToggleCompletedEvent(item.id));
                        }),
                      ),
                    );
                  },
                );
              }
-             if(state is TodoFailed){
-               return Center(
-                 child: Text('Your todos List is empty'),
-               );
 
-             }
 
              // Default widget
              return const Center(child: Text('No State is Found'),);

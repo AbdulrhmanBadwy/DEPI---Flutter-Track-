@@ -1,12 +1,17 @@
-import 'package:assignment_9/controllers/block/todo_cubit.dart';
+import 'package:assignment_9/controllers/blocs/todo_with_bloc/todo_bloc.dart';
 import 'package:assignment_9/screens/add_task.dart';
 import 'package:assignment_9/widgets/task_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Tasks extends StatelessWidget {
+class Tasks extends StatefulWidget {
   const Tasks({super.key});
 
+  @override
+  State<Tasks> createState() => _TasksState();
+}
+
+class _TasksState extends State<Tasks> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,12 +50,14 @@ class Tasks extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) {
-                        return BlocProvider.value(
-                          value: context.read<TodoCubit>(),
-                          child: AddTask(),
-                        );
-                      }),
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return BlocProvider.value(
+                            value: context.read<TodoBloc>(),
+                            child: const AddTask(),
+                          );
+                        },
+                      ),
                     );
                   },
                   shape: RoundedRectangleBorder(
@@ -65,9 +72,9 @@ class Tasks extends StatelessWidget {
 
         // Body: List of tasks
         Expanded(
-          child: BlocBuilder<TodoCubit, TodoState>(
+          child: BlocBuilder<TodoBloc, TodoState>(
             builder: (context, state) {
-              if (state.todos.isEmpty) {
+              if (state is TodoInitial) {
                 return const Center(
                   child: Text(
                     'No Tasks Found, Please Click To Create One',
@@ -75,14 +82,16 @@ class Tasks extends StatelessWidget {
                   ),
                 );
               }
-
-              return ListView.builder(
-                itemCount: state.todos.length,
-                itemBuilder: (context, index) {
-                  final task = state.todos[index];
-                  return TaskWidget(taskModel: task);
-                },
-              );
+              if(state is TodoSuccess){
+                return ListView.builder(
+                  itemCount: state.todos.length,
+                  itemBuilder: (context, index) {
+                    final task = state.todos[index];
+                    return TaskWidget(taskModel: task);
+                  },
+                );
+              }
+              return Center(child: Text('fail State'),);
             },
           ),
         ),

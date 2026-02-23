@@ -1,10 +1,10 @@
-
-import 'package:assignment_9/controllers/block/todo_cubit.dart';
 import 'package:assignment_9/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main(){
+import 'controllers/blocs/todo_with_bloc/todo_bloc.dart';
+
+void main() {
   runApp(const MyApp());
 }
 
@@ -13,12 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (_) => TodoCubit(),
-        child: HomeScreen(),
-      ),
-    );
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TodoBloc()..add(LoadTodosEvent()),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+        ),
+      );
   }
 }

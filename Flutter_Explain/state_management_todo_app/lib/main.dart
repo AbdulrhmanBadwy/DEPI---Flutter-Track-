@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fourth_session/blocs/todo_cubit/todo_cubit.dart';
-import 'package:fourth_session/controllers/todo_controller.dart';
 import 'package:fourth_session/screens/home_screen.dart';
-import 'package:provider/provider.dart';
+import 'bloc_observable.dart';
+import 'blocs/todo_bloc/todo_bloc.dart';
 
-void main(){
-runApp(const MyApp());
+void main() {
+  Bloc.observer = AppBlocObserver();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,8 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_)=> TodoCubit() ,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TodoBloc(),
+        ),
+        BlocProvider(
+          create: (_) => TodoCubit(),
+        ),
+      ],
       child: MaterialApp(
         home: HomeScreen(),
       ),

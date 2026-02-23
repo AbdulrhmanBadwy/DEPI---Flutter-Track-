@@ -1,11 +1,11 @@
-import 'package:assignment_9/controllers/block/todo_cubit.dart';
+import 'package:assignment_9/controllers/blocs/todo_with_bloc/todo_bloc.dart';
 import 'package:flutter/material.dart';
 
 class IconDropdownWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final Color color;
-  final TodoCubit bloc;
+  final TodoBloc bloc;
   final BuildContext context;
   const IconDropdownWidget({
     super.key,
