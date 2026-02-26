@@ -29,8 +29,8 @@
               "state": {
                 "file": "Excalidraw/Drawing 2026-02-21 12.14.35.excalidraw.md"
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-02-21 12.14.35.excalidraw"
+              "icon": "lucide-ghost",
+              "title": "excalidraw"
             }
           },
           {
@@ -41,8 +41,8 @@
               "state": {
                 "file": "Excalidraw/Drawing 2026-02-21 07.43.45.excalidraw.md"
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-02-21 07.43.45.excalidraw"
+              "icon": "lucide-ghost",
+              "title": "excalidraw"
             }
           }
         ]
@@ -205,26 +205,25 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false,
-      "obsidian-excalidraw-plugin:New drawing": false
+      "bases:Create new base": false
     }
   },
   "active": "38a818362c459eb4",
   "lastOpenFiles": [
-    "Pasted image 20260223080107.png",
+    "Flutter_Explain/Pasted image 20260221072547.png",
+    "Flutter_Explain/Flutter.md",
+    "Flutter_Explain/Pasted image 20260223080107.png",
     "Excalidraw/Drawing 2026-02-21 12.14.35.excalidraw.md",
     "Excalidraw/Drawing 2026-02-21 07.43.45.excalidraw.md",
-    "Flutter_Explain/Flutter.md",
-    "Pasted image 20260223075531.png",
-    "Pasted image 20260222222904.png",
-    "Pasted image 20260222214555.png",
-    "Pasted Image 20260222213139_880.png",
-    "Pasted Image 20260222212959_009.png",
-    "Pasted Image 20260221122535_748.png",
-    "Pasted image 20260221082028.png",
-    "Pasted image 20260221081716.png",
-    "Pasted image 20260221074514.png",
-    "Pasted Image 20260221074359_863.png",
+    "Flutter_Explain/Pasted image 20260223075531.png",
+    "Flutter_Explain/Pasted image 20260222222904.png",
+    "Flutter_Explain/Pasted image 20260222214555.png",
+    "Flutter_Explain/Pasted Image 20260222213139_880.png",
+    "Flutter_Explain/Pasted Image 20260222212959_009.png",
+    "Flutter_Explain/Pasted Image 20260221122535_748.png",
+    "Flutter_Explain/Pasted image 20260221082028.png",
+    "Flutter_Explain/Pasted image 20260221081716.png",
+    "Flutter_Explain/Pasted image 20260221074514.png",
     "Excalidraw/Drawing 2026-02-21 07.41.33.excalidraw.md",
     "Excalidraw/Drawing 2026-02-19 15.09.23.excalidraw.md",
     "Tasks/Flutter Tasks.md",
