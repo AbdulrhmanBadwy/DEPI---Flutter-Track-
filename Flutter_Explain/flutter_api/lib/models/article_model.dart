@@ -1,23 +1,25 @@
 class Articles {
-  final String status;
-  final int totalResults;
-  final List<ArticleModel> articles;
+  final String? status;
+  final int? totalResults;
+  final List<ArticleModel>? articles;
 
-  Articles({
-    required this.status,
-    required this.totalResults,
-    required this.articles,
-  });
+  Articles({this.status, this.totalResults, this.articles});
 
-  factory Articles.fromJson(Map<String, dynamic> json) {
-    return Articles(
-      status: json['status'] ?? '',
-      totalResults: json['totalResults'] ?? 0,
-      articles: (json['articles'] as List? ?? [])
-          .map((e) => ArticleModel.fromJson(e))
-          .toList(),
-    );
-  }
+  factory Articles.fromJson(Map<String, dynamic> json) => Articles(
+    status: json["status"],
+    totalResults: json["totalResults"],
+    articles: json["articles"] == null
+        ? []
+        : List<ArticleModel>.from(json["articles"]!.map((x) => ArticleModel.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "totalResults": totalResults,
+    "articles": articles == null
+        ? []
+        : List<dynamic>.from(articles!.map((x) => x.toJson())),
+  };
 }
 
 class ArticleModel {

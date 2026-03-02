@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e8962b9fa63cd943",
+        "id": "9448d9256e90aef5",
         "type": "tabs",
         "children": [
           {
-            "id": "38a818362c459eb4",
+            "id": "37c18010cb9c7fe6",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,30 +19,6 @@
               },
               "icon": "lucide-file",
               "title": "Flutter"
-            }
-          },
-          {
-            "id": "06fac25966f7a1ca",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2026-02-21 12.14.35.excalidraw.md"
-              },
-              "icon": "lucide-ghost",
-              "title": "excalidraw"
-            }
-          },
-          {
-            "id": "9dfcf94f7af2f9c6",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2026-02-21 07.43.45.excalidraw.md"
-              },
-              "icon": "lucide-ghost",
-              "title": "excalidraw"
             }
           }
         ]
@@ -208,22 +184,22 @@
       "bases:Create new base": false
     }
   },
-  "active": "38a818362c459eb4",
+  "active": "37c18010cb9c7fe6",
   "lastOpenFiles": [
-    "Flutter_Explain/Pasted image 20260221072547.png",
+    "Flutter_Explain/Pasted image 20260228055044.png",
     "Flutter_Explain/Flutter.md",
+    "Flutter_Explain/Pasted image 20260228061754.png",
+    "Flutter_Explain/Pasted image 20260228055838.png",
+    "Flutter_Explain/Pasted image 20260228055609.png",
+    "Tasks/Assignment_12.md",
+    "Tasks/Screenshot_20260226_221608.png",
+    "Tasks/Screenshot_20260226_221548.png",
+    "Flutter_Explain/Pasted image 20260221072547.png",
     "Flutter_Explain/Pasted image 20260223080107.png",
     "Excalidraw/Drawing 2026-02-21 12.14.35.excalidraw.md",
     "Excalidraw/Drawing 2026-02-21 07.43.45.excalidraw.md",
     "Flutter_Explain/Pasted image 20260223075531.png",
     "Flutter_Explain/Pasted image 20260222222904.png",
-    "Flutter_Explain/Pasted image 20260222214555.png",
-    "Flutter_Explain/Pasted Image 20260222213139_880.png",
-    "Flutter_Explain/Pasted Image 20260222212959_009.png",
-    "Flutter_Explain/Pasted Image 20260221122535_748.png",
-    "Flutter_Explain/Pasted image 20260221082028.png",
-    "Flutter_Explain/Pasted image 20260221081716.png",
-    "Flutter_Explain/Pasted image 20260221074514.png",
     "Excalidraw/Drawing 2026-02-21 07.41.33.excalidraw.md",
     "Excalidraw/Drawing 2026-02-19 15.09.23.excalidraw.md",
     "Tasks/Flutter Tasks.md",

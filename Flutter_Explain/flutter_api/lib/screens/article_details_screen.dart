@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../models/news_model.dart';
+import 'package:flutter_api/models/article_model.dart';
 
 class ArticleDetailsScreen extends StatelessWidget {
   final ArticleModel model;
@@ -64,7 +63,7 @@ class ArticleDetailsScreen extends StatelessWidget {
                               color: Colors.grey,
                             ),
                           ),
-                          const SizedBox(width: 10),
+                      const SizedBox(width: 10),
                           Text(
                               '${model.publishedAt??DateTime.timestamp()}',
                               style: const TextStyle(

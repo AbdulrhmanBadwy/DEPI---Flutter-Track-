@@ -1527,5 +1527,25 @@ class AppBlocObserver extends BlocObserver {
 ![[Pasted image 20260223075531.png]]
 
 
+# Flutter API
+API ---> Application Programming Interface 
+`API` : *هو الرابط اللي بيربط بين التطبيق بتاعك و السيرفر *
+`REST API` : *  هي الطريقة اللي انت بتتعامل معاها بيه .. تحذف ، تضيف و هكذا*
+
+![[Pasted image 20260228055044.png]]
+![[Pasted image 20260228055609.png]]
+![[Pasted image 20260228055838.png]]
+![[Pasted image 20260228061754.png]]
+
+**API  هي وسيلة التواصل بين الخدمات المختلفة**
+
+
+
+
+
+
+
+
+
 
 

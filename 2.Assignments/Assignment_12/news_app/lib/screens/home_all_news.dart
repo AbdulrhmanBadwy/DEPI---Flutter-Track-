@@ -30,14 +30,25 @@ class _HomeAllNewsState extends State<HomeAllNews> {
         ),
         backgroundColor: Color(0xFFE9EEFA),
       ),
-      body: BlocBuilder<NewsCubit,NewsState>(
+      body: BlocBuilder<NewsCubit, NewsState>(
         builder: (context, state) {
-          return ListView.builder(
+          if (state.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state.news.isEmpty) {
+            return const Center(child: Text('No news found'));
+          }
+
+          return ListView.separated(
+
             itemCount: state.news.length,
-              itemBuilder: (context, index) {
-                final item = NewsWidget(item: state.news[index]);
-                return item;
-              }
+            itemBuilder: (context, index) {
+              return NewsWidget(item: state.news[index]);
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(height: 8,);
+          },
           );
         },
       ),

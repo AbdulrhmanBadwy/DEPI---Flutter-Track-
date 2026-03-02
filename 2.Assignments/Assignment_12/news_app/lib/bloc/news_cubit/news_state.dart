@@ -1,19 +1,29 @@
 part of 'news_cubit.dart';
-
 @immutable
- class NewsState {
-  final List<NewsModel> news ;
-  const NewsState({required this.news});
+class NewsState {
+  final List<ArticleModel> news;
+  final bool isLoading;
 
-  factory NewsState.initial(){
-    return NewsState(news: []);
+  const NewsState({
+    required this.news,
+    required this.isLoading,
+  });
+
+  factory NewsState.initial() {
+    return const NewsState(
+      news: [],
+      isLoading: true,
+    );
   }
 
   NewsState copyWith({
-    List<NewsModel>? news,
-}){
-    return NewsState(news:  news?? this.news);
-}
-
+    List<ArticleModel>? news,
+    bool? isLoading,
+  }) {
+    return NewsState(
+      news: news ?? this.news,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
 }
 
