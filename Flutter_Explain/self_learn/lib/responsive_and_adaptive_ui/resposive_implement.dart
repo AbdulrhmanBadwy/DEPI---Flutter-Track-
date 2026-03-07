@@ -10,12 +10,9 @@ class ResponsiveImplement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Profile', style: TextStyle(color: Colors.white)),
-        centerTitle: true,
-      ),
+
       body: LayoutBuilder(builder: (context,constraints){
-        if(constraints.maxWidth>600){
+        if(constraints.maxWidth>400){
           return TabletWidget(profileModel: profileModel,);
         }else {
           return MobileWidget(profileModel: profileModel);

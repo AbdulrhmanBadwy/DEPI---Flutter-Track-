@@ -1162,6 +1162,10 @@ class RouterGenerator {
 #### LayoutBuilder
 ![[Pasted image 20260216172340.png]]
 
+### Helper Package 
+`flutter pub add flutter_screenutil`
+![[Pasted image 20260303211229.png]]
+
 
 
 ``

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:self_learn/responsive_and_adaptive_ui/my_profile_task/models/profile_model.dart';
-import 'package:self_learn/responsive_and_adaptive_ui/my_profile_task/widgets/mobile_widget.dart';
-// import 'package:self_learn/navigator_parctical/routing/router_generator.dart';
-// import 'package:self_learn/navigator_parctical/routing/app_route.dart';
-// import 'package:self_learn/navigator_parctical/routing/router_generator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:self_learn/responsive_and_adaptive_ui/resposive_implement.dart';
+// import 'package:self_learn/navigator_practical/routing/router_generator.dart';
+// import 'package:self_learn/navigator_practical/routing/app_route.dart';
+// import 'package:self_learn/navigator_practical/routing/router_generator.dart';
 
 void main(){
   runApp(MyApp());
@@ -29,17 +29,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            title: const Text('My Profile'),
-            backgroundColor: Colors.red,
-            elevation: 0,
+    return ScreenUtilInit(
+      designSize: Size(375, 812),
+      child: MaterialApp(
+          home: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              title: const Text('My Profile'),
+              backgroundColor: Colors.red,
+              elevation: 0,
+            ),
+            body: ResponsiveImplement(),
+            ),
           ),
-          body: MobileWidget(profileModel: profileModel),
-        ),
-    );
+      );
   }
 
 }

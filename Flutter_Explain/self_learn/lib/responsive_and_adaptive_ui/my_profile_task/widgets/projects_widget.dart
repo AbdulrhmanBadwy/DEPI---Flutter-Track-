@@ -8,7 +8,7 @@ class ProjectsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16 ),
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 10 , right: 10),
       color: Color(0xFFECEBFE),
         child: Column(
           children: [
