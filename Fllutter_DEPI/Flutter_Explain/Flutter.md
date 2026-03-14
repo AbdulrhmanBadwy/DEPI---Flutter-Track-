@@ -1544,6 +1544,14 @@ API ---> Application Programming Interface
 **API  هي وسيلة التواصل بين الخدمات المختلفة**
 
 
+# Flutter Animation 
+
+![[Pasted image 20260313211906.png]]
+
+![[Pasted image 20260313212013.png]]
+![[Pasted image 20260313212324.png]]
+
+
 
 
 
