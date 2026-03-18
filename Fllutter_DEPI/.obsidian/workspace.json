@@ -8,20 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "37c18010cb9c7fe6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Flutter_Explain/Flutter.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Flutter"
-            }
-          },
-          {
             "id": "5f4675f6b0c9abf1",
             "type": "leaf",
             "state": {
@@ -92,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "18f345bcf969c7c0",
@@ -199,24 +184,23 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "37c18010cb9c7fe6",
+  "active": "e3087efe46890d03",
   "lastOpenFiles": [
-    "Pasted image 20260313212324.png",
-    "Pasted image 20260313212056.png",
-    "Pasted image 20260313212013.png",
-    "Pasted image 20260313211906.png",
-    "Pasted image 20260313211821.png",
+    "Flutter_Explain/Flutter.md",
+    "Flutter_Explain/Pasted image 20260313212324.png",
+    "Flutter_Explain/Pasted image 20260313212056.png",
+    "Flutter_Explain/Pasted image 20260313212013.png",
+    "Flutter_Explain/Pasted image 20260313211906.png",
+    "Flutter_Explain/Pasted image 20260313211821.png",
     "Projects/Finance_app/Steps of Building Finance App.md",
     "Excalidraw/Drawing 2026-03-06 17.05.32.excalidraw.md",
-    "Pasted image 20260306192140.png",
-    "Pasted image 20260306170931.png",
-    "Pasted image 20260306170820.png",
-    "Pasted image 20260306170749.png",
-    "Pasted image 20260306170707.png",
-    "Pasted Image 20260306170556_338.png",
+    "Flutter_Explain/Pasted image 20260306192140.png",
+    "Flutter_Explain/Pasted image 20260306170931.png",
+    "Flutter_Explain/Pasted image 20260306170820.png",
+    "Flutter_Explain/Pasted image 20260306170749.png",
+    "Flutter_Explain/Pasted image 20260306170707.png",
     "Projects/Finance_app",
     "Projects",
-    "Flutter_Explain/Flutter.md",
     "Tasks/Assignment_12.md",
     "Excalidraw/Drawing 2026-02-21 12.14.35.excalidraw.md",
     "Excalidraw/Drawing 2026-02-21 07.43.45.excalidraw.md",
