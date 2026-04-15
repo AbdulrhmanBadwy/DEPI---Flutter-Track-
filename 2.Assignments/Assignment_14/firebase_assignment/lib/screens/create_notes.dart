@@ -74,6 +74,14 @@ class _CreateNotesState extends State<CreateNotes> {
           elevation: 0,
           actions: [
             IconButton(
+              onPressed: () => throw Exception("Test Crash"),
+              icon: Icon(
+                Icons.bug_report_outlined,
+                color: AppColors.headLineNoteColor,
+              ),
+              tooltip: 'Test crash',
+            ),
+            IconButton(
               onPressed: () => context.read<AuthCubit>().signOut(),
               icon: Icon(
                 Icons.logout_rounded,

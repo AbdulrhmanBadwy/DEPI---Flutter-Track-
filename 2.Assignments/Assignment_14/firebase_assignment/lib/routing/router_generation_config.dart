@@ -1,16 +1,31 @@
 import 'package:firebase_assignment/models/note_model.dart';
 import 'package:firebase_assignment/routing/app_routes.dart';
 import 'package:firebase_assignment/screens/create_notes.dart';
+import 'package:firebase_assignment/screens/force_update_screen.dart';
 import 'package:firebase_assignment/screens/login_screen.dart';
 import 'package:firebase_assignment/screens/notes_details.dart';
 import 'package:firebase_assignment/screens/notes_list.dart';
+import 'package:firebase_assignment/services/remote_config_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGenerationConfig {
   static final GoRouter goRouter = GoRouter(
     initialLocation: AppRoutes.createNoteScreen,
-    redirect: (context, state) {
+    redirect: (context, state) async {
+      final isForceUpdateRequired =
+          await RemoteConfigService().isForceUpdateRequiredCached();
+      final isForceUpdateRoute =
+          state.matchedLocation == AppRoutes.forceUpdateScreen;
+
+      if (isForceUpdateRequired && !isForceUpdateRoute) {
+        return AppRoutes.forceUpdateScreen;
+      }
+
+      if (!isForceUpdateRequired && isForceUpdateRoute) {
+        return AppRoutes.notesListScreen;
+      }
+
       final isAuthenticated = FirebaseAuth.instance.currentUser != null;
       final isLoginRoute = state.matchedLocation == AppRoutes.loginScreen;
       final protectedRoutes = <String>{
@@ -32,6 +47,11 @@ class RouterGenerationConfig {
       return null;
     },
     routes: [
+      GoRoute(
+        path: AppRoutes.forceUpdateScreen,
+        name: AppRoutes.forceUpdateScreen,
+        builder: (context, state) => const ForceUpdateScreen(),
+      ),
       GoRoute(
         path: AppRoutes.loginScreen,
         name: AppRoutes.loginScreen,
