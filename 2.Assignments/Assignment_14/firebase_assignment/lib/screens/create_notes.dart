@@ -1,3 +1,4 @@
+import 'package:firebase_assignment/cubit/auth_cubit.dart';
 import 'package:firebase_assignment/cubit/notes_cubit.dart';
 import 'package:firebase_assignment/cubit/notes_state.dart';
 import 'package:firebase_assignment/routing/app_routes.dart';
@@ -54,6 +55,8 @@ class _CreateNotesState extends State<CreateNotes> {
 
   @override
   Widget build(BuildContext context) {
+    final keyboardInset = MediaQuery.of(context).viewInsets.bottom;
+
     return BlocListener<NotesCubit, NotesState>(
       listener: (context, state) {
         if (state is NoteActionSuccess) {
@@ -66,93 +69,112 @@ class _CreateNotesState extends State<CreateNotes> {
         }
       },
       child: Scaffold(
-        body: Center(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 40.h, horizontal: 20.w),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20.r),
-
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          actions: [
+            IconButton(
+              onPressed: () => context.read<AuthCubit>().signOut(),
+              icon: Icon(
+                Icons.logout_rounded,
+                color: AppColors.headLineNoteColor,
+              ),
+              tooltip: 'Logout',
             ),
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Text('Create Note', style: AppStyles.appBarStyle),
-                ),
-                SizedBox(height: 30.h),
+          ],
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(
+              left: 20.w,
+              right: 20.w,
+              top: 40.h,
+              bottom: keyboardInset + 24.h,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Center(
+                    child: Text('Create Note', style: AppStyles.appBarStyle),
+                  ),
+                  SizedBox(height: 30.h),
 
-                // Title field
-                Text('Note Title', style: AppStyles.labelStyle),
-                SizedBox(height: 8.h),
-                _buildTextField(
-                  controller: _titleController,
-                  hint: 'Enter note title',
-                ),
-                SizedBox(height: 20.h),
+                  // Title field
+                  Text('Note Title', style: AppStyles.labelStyle),
+                  SizedBox(height: 8.h),
+                  _buildTextField(
+                    controller: _titleController,
+                    hint: 'Enter note title',
+                  ),
+                  SizedBox(height: 20.h),
 
-                // Description field
-                Text('Description', style: AppStyles.labelStyle),
-                SizedBox(height: 8.h),
-                _buildTextField(
-                  controller: _descController,
-                  hint: 'Enter note description',
-                  maxLines: 6,
-                ),
+                  // Description field
+                  Text('Description', style: AppStyles.labelStyle),
+                  SizedBox(height: 8.h),
+                  _buildTextField(
+                    controller: _descController,
+                    hint: 'Enter note description',
+                    maxLines: 6,
+                  ),
+                  SizedBox(height: 24.h),
 
-                const Spacer(),
-
-                // Save button
-                BlocBuilder<NotesCubit, NotesState>(
-                  builder: (context, state) {
-                    return SizedBox(
-                      width: double.infinity,
-                      height: 52.h,
-                      child: ElevatedButton(
-                        onPressed: state is NotesLoading ? null : _onSave,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.elevatedButtonColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.r),
+                  // Save button
+                  BlocBuilder<NotesCubit, NotesState>(
+                    builder: (context, state) {
+                      return SizedBox(
+                        width: double.infinity,
+                        height: 52.h,
+                        child: ElevatedButton(
+                          onPressed: state is NotesLoading ? null : _onSave,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.elevatedButtonColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                            elevation: 0,
                           ),
-                          elevation: 0,
-                        ),
-                        child: state is NotesLoading
-                            ? SizedBox(
-                                width: 22.w,
-                                height: 22.h,
-                                child: const CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2.5,
+                          child: state is NotesLoading
+                              ? SizedBox(
+                                  width: 22.w,
+                                  height: 22.h,
+                                  child: const CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2.5,
+                                  ),
+                                )
+                              : Text(
+                                  'Save Note',
+                                  style: AppStyles.buttonTextStyle,
                                 ),
-                              )
-                            : Text(
-                                'Save Note',
-                                style: AppStyles.buttonTextStyle,
-                              ),
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(height: 12.h),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: 12.h),
 
-                // View Notes
-                Center(
-                  child: TextButton(
-                    onPressed: () =>
-                        context.pushNamed(AppRoutes.notesListScreen),
-                    child: Text(
-                      'View Notes',
-                      style: TextStyle(
-                        color: AppColors.textButtonColor,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w500,
+                  // View Notes
+                  Center(
+                    child: TextButton(
+                      onPressed: () => context.pushNamed(AppRoutes.notesListScreen),
+                      child: Text(
+                        'View Notes',
+                        style: TextStyle(
+                          color: AppColors.textButtonColor,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
